@@ -621,9 +621,12 @@
     <div class="img-modal-backdrop" id="imgModalBg"></div>
     <div class="img-modal-inner">
       <button class="img-modal-close" id="imgModalClose" aria-label="닫기">✕</button>
-      <button class="carousel-btn prev" id="carouselPrev" aria-label="이전">&#8249;</button>
-      <img id="imgModalSrc" src="" alt="">
-      <button class="carousel-btn next" id="carouselNext" aria-label="다음">&#8250;</button>
+      <button class="carousel-btn prev" id="carouselPrev" aria-label="이전 사진"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+      <div class="img-modal-stage">
+        <img id="imgModalSrc" src="" alt="">
+        <div class="img-loading" id="imgLoading" role="status" aria-live="polite"><span class="img-spinner"></span><span>사진을 불러오는 중...</span></div>
+      </div>
+      <button class="carousel-btn next" id="carouselNext" aria-label="다음 사진"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
       <p id="imgModalCaption"></p>
       <div id="carouselCounter" class="carousel-counter"></div>
     </div>

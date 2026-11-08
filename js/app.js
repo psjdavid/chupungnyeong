@@ -406,8 +406,39 @@ function openCarousel(urls, caption, startIdx) {
   document.body.style.overflow = "hidden";
 }
 
+const _imgEl = document.getElementById("imgModalSrc");
+const _imgStage = _imgEl?.parentElement;
+let _loadingTimer = null;
+
+function _setLoading(on) {
+  clearTimeout(_loadingTimer);
+  if (on) {
+    _imgStage.classList.add("is-switching");
+    // 금방 뜨는 사진은 안내를 띄우지 않음 (깜빡임 방지)
+    _loadingTimer = setTimeout(() => _imgStage.classList.add("is-loading"), 150);
+  } else {
+    _imgStage.classList.remove("is-switching", "is-loading");
+  }
+}
+_imgEl?.addEventListener("load", () => _setLoading(false));
+_imgEl?.addEventListener("error", () => {
+  _setLoading(false);
+  document.getElementById("imgModalCaption").textContent = "사진을 불러오지 못했습니다. 다시 시도해 주세요.";
+});
+
+function _preload(i) {
+  if (i >= 0 && i < _carouselUrls.length) new Image().src = _carouselUrls[i];
+}
+
 function _updateCarousel() {
-  document.getElementById("imgModalSrc").src = _carouselUrls[_carouselIdx];
+  const url = _carouselUrls[_carouselIdx];
+  if (_imgEl.getAttribute("src") !== url) {
+    _setLoading(true);
+    _imgEl.src = url;
+    if (_imgEl.complete && _imgEl.naturalWidth) _setLoading(false);
+  }
+  _preload(_carouselIdx + 1);
+  _preload(_carouselIdx - 1);
   document.getElementById("imgModalCaption").textContent = _carouselCaption;
   document.getElementById("carouselCounter").textContent =
     _carouselUrls.length > 1 ? `${_carouselIdx + 1} / ${_carouselUrls.length}` : "";
