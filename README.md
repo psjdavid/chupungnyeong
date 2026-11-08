@@ -105,6 +105,20 @@ firebase deploy --only hosting
 
 ---
 
+## 🔄 업데이트 배포 (2026-11 개선판)
+
+보안 규칙을 **먼저**, 사이트를 **나중에** 배포하세요. (순서가 바뀌면 영상 게시판·조회수가 잠시 동작하지 않습니다)
+
+```bash
+firebase deploy --only firestore:rules
+firebase deploy --only hosting
+```
+
+추가된 기능: 영상 게시판(`videos`), 조회수(`views`), 중요 공지 고정(`pinned`, `pinUntil`),
+사이트 설정(`settings/site` — 도서관 운영시간), 사진 그룹 편집, 검색·페이지 번호.
+
+---
+
 ## 🎛️ 관리자 패널 사용법
 
 주소: `https://[내도메인]/admin/`

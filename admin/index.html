@@ -461,16 +461,93 @@
     .empty-state .empty-icon { font-size: 40px; margin-bottom: 12px; }
     .empty-state p { font-size: 0.9rem; }
 
+    /* ── 2026-11 추가 ── */
+    .toolbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 16px; }
+    .toolbar .tab-bar { margin-bottom: 0; }
+    .search-input {
+      width: 240px; padding: 9px 12px; border: 1.5px solid var(--gray-200); border-radius: 7px;
+      font-size: 0.9rem; font-family: inherit; outline: none;
+    }
+    .search-input:focus { border-color: var(--green-mid); }
+    .table-wrap { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .data-table td .btn + .btn { margin-left: 4px; }
+    .data-table td.nowrap { white-space: nowrap; }
+    .pin-tag { display:inline-block; background:#FCE8E6; color:var(--danger); font-size:0.72rem; font-weight:700; padding:2px 6px; border-radius:4px; margin-right:6px; }
+    .row-pinned td { background: #FFFBFA; }
+    .badge-praise { background:#F3E8FD; color:#8430CE; }
+    .badge-etc { background: var(--gray-100); color: var(--gray-600); }
+
+    .pin-box { background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: 8px; padding: 14px; }
+    .check-label { display: flex; align-items: center; gap: 8px; font-size: 0.92rem; font-weight: 600; cursor: pointer; margin: 0; }
+    .check-label input { width: 18px; height: 18px; accent-color: var(--green-deep); }
+
+    .admin-gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 14px; }
+    .ag-thumb { aspect-ratio: 1; border-radius: 8px; overflow: hidden; background: var(--gray-100); position: relative; cursor: pointer; }
+    .ag-thumb img { width: 100%; height: 100%; object-fit: cover; }
+    .ag-count { position:absolute; top:4px; right:4px; background:rgba(0,0,0,0.6); color:white; font-size:0.72rem; font-weight:700; padding:2px 7px; border-radius:20px; }
+    .ag-title { font-size: 0.82rem; margin-top: 6px; color: var(--gray-800); font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .ag-meta { display: flex; gap: 4px; align-items: center; margin-top: 2px; font-size: 0.72rem; color: var(--gray-400); flex-wrap: wrap; }
+    .ag-actions { display: flex; gap: 4px; margin-top: 6px; }
+    .ag-actions .btn { flex: 1; justify-content: center; padding: 6px 4px; }
+
+    .modal-box.wide { max-width: 820px; }
+    .ge-photos { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 10px; }
+    .ge-photo { position: relative; border-radius: 8px; overflow: hidden; background: var(--gray-100); border: 2px solid transparent; }
+    .ge-photo.cover { border-color: var(--amber); }
+    .ge-photo.new { border-color: var(--green-light); }
+    .ge-photo img { width: 100%; aspect-ratio: 1; object-fit: cover; display: block; }
+    .ge-label { position: absolute; top: 4px; left: 4px; font-size: 0.68rem; font-weight: 700; padding: 2px 6px; border-radius: 4px; color: white; }
+    .ge-label.cover { background: var(--amber); }
+    .ge-label.new { background: var(--green-mid); }
+    .ge-tools { display: flex; background: white; }
+    .ge-tools button { flex: 1; border: none; background: white; padding: 8px 0; font-size: 0.85rem; cursor: pointer; border-top: 1px solid var(--gray-200); }
+    .ge-tools button + button { border-left: 1px solid var(--gray-200); }
+    .ge-tools button:hover:not(:disabled) { background: var(--gray-100); }
+    .ge-tools button:disabled { color: var(--gray-200); cursor: default; }
+    .ge-tools .del { color: var(--danger); }
+
     /* 반응형 */
     @media (max-width: 900px) {
-      .admin-sidebar { display: none; }
-      .admin-content { margin-left: 0; }
+      /* 휴대전화: 사이드바를 상단 가로 메뉴로 */
+      .admin-sidebar {
+        top: 60px; width: 100%; height: auto; display: flex; overflow-x: auto;
+        padding: 6px 8px; border-right: none; border-bottom: 1px solid var(--gray-200);
+        z-index: 90; -webkit-overflow-scrolling: touch; scrollbar-width: none;
+      }
+      .admin-sidebar::-webkit-scrollbar { display: none; }
+      .sidebar-section { display: flex; margin: 0; }
+      .sidebar-label { display: none; }
+      .sidebar-item {
+        white-space: nowrap; padding: 10px 14px; border-left: none; border-radius: 20px; font-size: 0.92rem;
+      }
+      .sidebar-item.active { background: var(--green-deep); color: white; }
+      .admin-content { margin-left: 0; padding-top: 118px; }
       .stat-grid { grid-template-columns: 1fr 1fr; }
+      .admin-user, .admin-header-sub { display: none; }
     }
     @media (max-width: 600px) {
-      .content-area { padding: 16px; }
-      .form-row { grid-template-columns: 1fr; }
+      .content-area { padding: 16px 12px; }
+      .form-row, .form-row.triple { grid-template-columns: 1fr; }
       .stat-grid { grid-template-columns: 1fr 1fr; }
+      .page-header { flex-wrap: wrap; gap: 12px; }
+      .page-header .btn { width: 100%; justify-content: center; }
+      .btn { min-height: 44px; font-size: 0.95rem; }
+      .btn-sm { min-height: 38px; font-size: 0.85rem; padding: 6px 12px; }
+      input[type="text"], input[type="date"], input[type="url"], input[type="search"], select, textarea { font-size: 16px; }
+      .search-input { width: 100%; }
+      .tab-bar { width: 100%; overflow-x: auto; }
+      .tab-btn { white-space: nowrap; padding: 9px 14px; }
+      .card { padding: 16px; }
+      .data-table th, .data-table td { padding: 10px 8px; }
+      .modal-overlay { padding: 0; align-items: flex-end; }
+      .modal-box { max-height: 94vh; border-radius: 14px 14px 0 0; }
+      .modal-footer { flex-wrap: wrap; }
+      .modal-footer .btn { flex: 1; justify-content: center; }
+      .modal-footer .btn-danger { flex-basis: 100%; margin-right: 0 !important; }
+      .admin-gallery-grid { grid-template-columns: 1fr 1fr; }
+      .ge-photos { grid-template-columns: repeat(3, 1fr); }
+      .ge-tools button { padding: 10px 0; }
+      #dash-grid { grid-template-columns: 1fr !important; }
     }
 
     /* 페이지 표시 제어 */
@@ -483,7 +560,7 @@
 <!-- ====== 로그인 화면 ====== -->
 <div id="login-screen">
   <div class="login-card">
-    <div class="login-logo">⛪</div>
+    <div class="login-logo"><img src="../icon.png" alt="로고" style="width:36px;height:36px;object-fit:contain;"></div>
     <h1>추풍령교회 관리자</h1>
     <p>구름바람 작은도서관 · 홈페이지 관리 시스템</p>
 
@@ -505,7 +582,7 @@
   <!-- 헤더 -->
   <header class="admin-header">
     <div class="admin-header-left">
-      <span class="admin-header-logo">⛪</span>
+      <img src="../icon.png" alt="로고" class="admin-header-logo" style="width:28px;height:28px;object-fit:contain;">
       <div>
         <h1>추풍령교회</h1>
         <div class="admin-header-sub">구름바람 작은도서관 · 관리자 패널</div>
@@ -533,6 +610,9 @@
       <div class="sidebar-item" onclick="goPage('sermons', this)">
         <span class="sidebar-icon">🎙️</span> 설교 관리
       </div>
+      <div class="sidebar-item" onclick="goPage('videos', this)">
+        <span class="sidebar-icon">🎬</span> 영상 게시판
+      </div>
     </div>
     <div class="sidebar-section">
       <div class="sidebar-label">도서관</div>
@@ -547,6 +627,9 @@
       <div class="sidebar-label">운영</div>
       <div class="sidebar-item" onclick="goPage('inquiries', this)">
         <span class="sidebar-icon">✉️</span> 문의 내역
+      </div>
+      <div class="sidebar-item" onclick="goPage('settings', this)">
+        <span class="sidebar-icon">⚙️</span> 사이트 설정
       </div>
     </div>
   </nav>
@@ -595,7 +678,7 @@
           </div>
         </div>
 
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+        <div id="dash-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
           <div class="card">
             <div class="card-title">최근 공지사항</div>
             <div id="dash-notices">
@@ -640,27 +723,32 @@
         </div>
 
         <div class="card">
-          <div class="tab-bar">
-            <button class="tab-btn active" onclick="filterNotices('all', this)">전체</button>
-            <button class="tab-btn" onclick="filterNotices('church', this)">교회</button>
-            <button class="tab-btn" onclick="filterNotices('library', this)">도서관</button>
-            <button class="tab-btn" onclick="filterNotices('event', this)">행사</button>
+          <div class="toolbar">
+            <div class="tab-bar">
+              <button class="tab-btn active" onclick="filterNotices('all', this)">전체</button>
+              <button class="tab-btn" onclick="filterNotices('church', this)">교회</button>
+              <button class="tab-btn" onclick="filterNotices('library', this)">도서관</button>
+              <button class="tab-btn" onclick="filterNotices('event', this)">행사</button>
+            </div>
+            <input type="search" class="search-input" id="notice-search" placeholder="🔍 제목 검색" oninput="searchNotices()">
           </div>
 
+          <div class="table-wrap">
           <table class="data-table">
             <thead>
               <tr>
                 <th style="width:70px">분류</th>
                 <th>제목</th>
                 <th style="width:100px">날짜</th>
-                <th style="width:80px">상태</th>
-                <th style="width:120px">관리</th>
+                <th style="width:70px">조회</th>
+                <th style="width:190px">관리</th>
               </tr>
             </thead>
             <tbody id="notices-tbody">
               <tr><td colspan="5"><div class="empty-state"><div class="empty-icon">📢</div><p>공지사항이 없습니다</p></div></td></tr>
             </tbody>
           </table>
+          </div>
         </div>
       </div>
 
@@ -681,6 +769,11 @@
         </div>
 
         <div class="card">
+          <div class="toolbar">
+            <span></span>
+            <input type="search" class="search-input" id="sermon-search" placeholder="🔍 제목·본문 검색" oninput="searchSermons()">
+          </div>
+          <div class="table-wrap">
           <table class="data-table">
             <thead>
               <tr>
@@ -689,13 +782,56 @@
                 <th style="width:90px">설교자</th>
                 <th style="width:100px">날짜</th>
                 <th style="width:140px">본문</th>
-                <th style="width:100px">관리</th>
+                <th style="width:60px">조회</th>
+                <th style="width:120px">관리</th>
               </tr>
             </thead>
             <tbody id="sermons-tbody">
-              <tr><td colspan="6"><div class="empty-state"><div class="empty-icon">🎙️</div><p>등록된 설교가 없습니다</p></div></td></tr>
+              <tr><td colspan="7"><div class="empty-state"><div class="empty-icon">🎙️</div><p>등록된 설교가 없습니다</p></div></td></tr>
             </tbody>
           </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── 영상 게시판 ── -->
+      <div id="page-videos" class="admin-page">
+        <div class="page-header">
+          <div>
+            <h2>영상 게시판</h2>
+            <p>찬양 · 행사 · 도서관 영상 (설교와 별도)</p>
+          </div>
+          <button class="btn btn-primary" onclick="openVideoModal()">＋ 영상 등록</button>
+        </div>
+
+        <div class="card">
+          <div class="toolbar">
+            <div class="tab-bar">
+              <button class="tab-btn active" onclick="filterVideos('all', this)">전체</button>
+              <button class="tab-btn" onclick="filterVideos('praise', this)">찬양</button>
+              <button class="tab-btn" onclick="filterVideos('event', this)">행사</button>
+              <button class="tab-btn" onclick="filterVideos('library', this)">도서관</button>
+              <button class="tab-btn" onclick="filterVideos('etc', this)">기타</button>
+            </div>
+            <input type="search" class="search-input" id="video-search" placeholder="🔍 제목 검색" oninput="searchVideos()">
+          </div>
+          <div class="table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th style="width:80px">썸네일</th>
+                <th>제목</th>
+                <th style="width:70px">분류</th>
+                <th style="width:100px">날짜</th>
+                <th style="width:60px">조회</th>
+                <th style="width:120px">관리</th>
+              </tr>
+            </thead>
+            <tbody id="videos-tbody">
+              <tr><td colspan="6"><div class="empty-state"><div class="empty-icon">🎬</div><p>등록된 영상이 없습니다</p></div></td></tr>
+            </tbody>
+          </table>
+          </div>
         </div>
       </div>
 
@@ -710,6 +846,7 @@
         </div>
 
         <div class="card">
+          <div class="table-wrap">
           <table class="data-table">
             <thead>
               <tr>
@@ -717,11 +854,12 @@
                 <th style="width:80px">대상</th>
                 <th style="width:90px">운영 현황</th>
                 <th style="width:180px">한 줄 소개</th>
-                <th style="width:100px">관리</th>
+                <th style="width:120px">관리</th>
               </tr>
             </thead>
             <tbody id="programs-tbody"></tbody>
           </table>
+          </div>
         </div>
       </div>
 
@@ -753,8 +891,8 @@
               <input type="date" id="gallery-date">
             </div>
             <div>
-              <label>제목 (선택)</label>
-              <input type="text" id="gallery-title" placeholder="활동명 입력">
+              <label>행사명 *</label>
+              <input type="text" id="gallery-title" placeholder="예) 교회학교 가을 소풍">
             </div>
           </div>
 
@@ -779,16 +917,19 @@
         </div>
 
         <div class="card">
-          <div class="card-title">📁 등록된 사진</div>
-          <div class="tab-bar">
-            <button class="tab-btn active" onclick="filterGallery('all', this)">전체</button>
-            <button class="tab-btn" onclick="filterGallery('church', this)">교회</button>
-            <button class="tab-btn" onclick="filterGallery('worship', this)">예배</button>
-            <button class="tab-btn" onclick="filterGallery('library', this)">도서관</button>
-            <button class="tab-btn" onclick="filterGallery('program', this)">프로그램</button>
-            <button class="tab-btn" onclick="filterGallery('event', this)">행사</button>
+          <div class="card-title">📁 등록된 사진 <span style="font-weight:400;font-size:0.82rem;color:var(--gray-600);">— '편집'에서 행사명·날짜 수정, 사진 추가·삭제·순서·대표사진 변경</span></div>
+          <div class="toolbar">
+            <div class="tab-bar">
+              <button class="tab-btn active" onclick="filterGallery('all', this)">전체</button>
+              <button class="tab-btn" onclick="filterGallery('church', this)">교회</button>
+              <button class="tab-btn" onclick="filterGallery('worship', this)">예배</button>
+              <button class="tab-btn" onclick="filterGallery('library', this)">도서관</button>
+              <button class="tab-btn" onclick="filterGallery('program', this)">프로그램</button>
+              <button class="tab-btn" onclick="filterGallery('event', this)">행사</button>
+            </div>
+            <input type="search" class="search-input" id="gallery-search" placeholder="🔍 행사명 검색" oninput="searchGallery()">
           </div>
-          <div id="gallery-grid" style="display:grid; grid-template-columns:repeat(auto-fill, minmax(130px, 1fr)); gap:12px;">
+          <div id="gallery-grid" class="admin-gallery-grid">
             <div class="empty-state" style="grid-column:1/-1;"><div class="empty-icon">🖼️</div><p>등록된 사진이 없습니다</p></div>
           </div>
         </div>
@@ -804,6 +945,7 @@
         </div>
 
         <div class="card">
+          <div class="table-wrap">
           <table class="data-table">
             <thead>
               <tr>
@@ -812,13 +954,41 @@
                 <th style="width:110px">연락처</th>
                 <th>제목</th>
                 <th style="width:70px">확인</th>
-                <th style="width:80px">관리</th>
+                <th style="width:120px">관리</th>
               </tr>
             </thead>
             <tbody id="inquiries-tbody">
               <tr><td colspan="6"><div class="empty-state"><div class="empty-icon">✉️</div><p>문의가 없습니다</p></div></td></tr>
             </tbody>
           </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── 사이트 설정 ── -->
+      <div id="page-settings" class="admin-page">
+        <div class="page-header">
+          <div>
+            <h2>사이트 설정</h2>
+            <p>여기서 바꾸면 홈페이지의 모든 화면에 똑같이 반영됩니다</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">📚 도서관 운영시간</div>
+          <div class="form-row">
+            <div>
+              <label>운영 요일</label>
+              <input type="text" id="set-library-days" placeholder="예) 화~일">
+            </div>
+            <div>
+              <label>운영 시간</label>
+              <input type="text" id="set-library-time" placeholder="예) 13:00 ~ 18:00">
+            </div>
+          </div>
+          <p style="font-size:0.82rem;color:var(--gray-600);margin-bottom:16px;">
+            상단 안내줄 · 도서관 소개 · 문의하기 화면에 함께 표시됩니다.
+          </p>
+          <button class="btn btn-primary" onclick="saveSettings()">저장</button>
         </div>
       </div>
 
@@ -859,6 +1029,17 @@
         <div>
           <label>내용</label>
           <textarea id="notice-content" rows="5" placeholder="공지 내용을 입력하세요"></textarea>
+        </div>
+      </div>
+      <div class="pin-box">
+        <label class="check-label">
+          <input type="checkbox" id="notice-pinned" onchange="togglePinUntil()">
+          📌 중요 공지로 맨 위에 고정
+        </label>
+        <div id="notice-pin-until-wrap" style="display:none;margin-top:10px;">
+          <label>고정 해제일 (선택)</label>
+          <input type="date" id="notice-pin-until">
+          <p style="font-size:0.8rem;color:var(--gray-600);margin-top:4px;">이 날짜가 지나면 자동으로 고정이 풀립니다. 행사일을 넣어두세요. 비워두면 직접 풀 때까지 고정됩니다.</p>
         </div>
       </div>
     </div>
@@ -914,6 +1095,105 @@
       <button class="btn btn-secondary" onclick="closeModal('sermon-modal')">취소</button>
       <button class="btn btn-secondary" onclick="previewYoutube()">미리보기</button>
       <button class="btn btn-primary" onclick="saveSermon()">저장</button>
+    </div>
+  </div>
+</div>
+
+<!-- ====== 영상 등록 모달 ====== -->
+<div class="modal-overlay" id="video-modal">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h3 id="video-modal-title">영상 등록</h3>
+      <button class="modal-close" onclick="closeModal('video-modal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <input type="hidden" id="video-edit-id">
+      <div class="form-row single">
+        <div>
+          <label>영상 제목 *</label>
+          <input type="text" id="video-title" placeholder="예) 성탄 찬양 발표회">
+        </div>
+      </div>
+      <div class="form-row">
+        <div>
+          <label>분류</label>
+          <select id="video-category">
+            <option value="praise">찬양</option>
+            <option value="event">행사</option>
+            <option value="library">도서관</option>
+            <option value="etc">기타</option>
+          </select>
+        </div>
+        <div>
+          <label>날짜 *</label>
+          <input type="date" id="video-date">
+        </div>
+      </div>
+      <div class="form-row single">
+        <div>
+          <label>유튜브 URL 또는 영상 ID *</label>
+          <input type="text" id="video-youtube" placeholder="예) https://youtube.com/watch?v=...">
+        </div>
+      </div>
+      <div class="form-row single">
+        <div>
+          <label>간단한 설명 (선택)</label>
+          <textarea id="video-desc" rows="3" placeholder="영상에 대한 짧은 소개"></textarea>
+        </div>
+      </div>
+      <div id="video-preview" style="margin-top:4px; display:none;">
+        <img id="video-thumb" src="" alt="썸네일" style="width:100%; border-radius:8px; max-height:180px; object-fit:cover;">
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('video-modal')">취소</button>
+      <button class="btn btn-secondary" onclick="previewVideo()">미리보기</button>
+      <button class="btn btn-primary" onclick="saveVideo()">저장</button>
+    </div>
+  </div>
+</div>
+
+<!-- ====== 사진 그룹 편집 모달 ====== -->
+<div class="modal-overlay" id="gallery-modal">
+  <div class="modal-box wide">
+    <div class="modal-header">
+      <h3>사진 편집</h3>
+      <button class="modal-close" onclick="closeGalleryEdit()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-row triple">
+        <div>
+          <label>행사명 *</label>
+          <input type="text" id="ge-title">
+        </div>
+        <div>
+          <label>카테고리</label>
+          <select id="ge-category">
+            <option value="church">교회 활동</option>
+            <option value="worship">예배</option>
+            <option value="library">도서관</option>
+            <option value="program">프로그램</option>
+            <option value="event">행사</option>
+          </select>
+        </div>
+        <div>
+          <label>날짜</label>
+          <input type="date" id="ge-date">
+        </div>
+      </div>
+      <label>사진 <span id="ge-count" style="font-weight:400;color:var(--gray-600);"></span></label>
+      <p style="font-size:0.8rem;color:var(--gray-600);margin-bottom:10px;">
+        첫 번째 사진이 <strong>대표사진</strong>입니다. ◀ ▶ 로 순서를 바꾸고, ★ 로 대표사진을 지정하세요. 사진을 바꾸려면 삭제 후 새로 추가하세요.
+      </p>
+      <div id="ge-photos" class="ge-photos"></div>
+      <button class="btn btn-secondary" style="margin-top:12px;" onclick="document.getElementById('ge-file-input').click()">＋ 사진 추가</button>
+      <input type="file" id="ge-file-input" accept="image/*" multiple style="display:none" onchange="geAddFiles(event)">
+      <span id="ge-status" style="font-size:0.85rem;color:var(--gray-600);margin-left:8px;"></span>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-danger" style="margin-right:auto;" onclick="deleteGalleryGroup()">그룹 전체 삭제</button>
+      <button class="btn btn-secondary" onclick="closeGalleryEdit()">취소</button>
+      <button class="btn btn-primary" id="ge-save-btn" onclick="saveGalleryEdit()">저장</button>
     </div>
   </div>
 </div>
@@ -1001,18 +1281,17 @@
 
 <!-- ====== Firebase & JS ====== -->
 <script type="module">
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
 import {
   getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged
-} from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js';
+} from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
 import {
-  getFirestore, collection, doc, addDoc, getDoc, getDocs,
-  updateDoc, deleteDoc, query, orderBy, limit, where,
-  serverTimestamp, Timestamp
-} from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
+  getFirestore, collection, doc, addDoc, getDoc, getDocs, setDoc,
+  updateDoc, deleteDoc, query, orderBy, serverTimestamp
+} from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
 import {
   getStorage, ref, uploadBytesResumable, getDownloadURL, deleteObject
-} from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-storage.js';
+} from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js';
 
 // ── Firebase 설정 (app.js와 동일한 값 사용) ──────────────────────────
 const firebaseConfig = {
@@ -1026,76 +1305,82 @@ const firebaseConfig = {
 };
 // ─────────────────────────────────────────────────────────────────────
 
-let app, auth, db, storage;
-let isFirebaseReady = false;
-let currentUser = null;
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+const storage = getStorage(app);
+
 let editingInquiryId = null;
 
-// 데모 데이터
-const demoData = {
-  notices: [
-    { id:'n1', title:'2025 하반기 교회 비전 집회 안내', category:'church', date:'2025-08-20', content:'하반기 비전집회가 8월 25일부터 27일까지 진행됩니다.' },
-    { id:'n2', title:'구름빵 독서교실 신청 안내', category:'library', date:'2025-08-15', content:'9월 독서교실 참가 신청을 받습니다. 관심 있는 분은 문의해 주세요.' },
-    { id:'n3', title:'가을바람 음악회 준비위원 모집', category:'event', date:'2025-08-10', content:'10월 가을바람 음악회 준비위원을 모집합니다.' },
-  ],
-  sermons: [
-    { id:'s1', title:'하나님의 은혜와 우리의 사명', preacher:'김철홍 목사', date:'2025-08-17', scripture:'에베소서 2:8-10', youtubeId:'dQw4w9WgXcQ' },
-    { id:'s2', title:'말씀 위에 세워지는 교회', preacher:'김철홍 목사', date:'2025-08-10', scripture:'마태복음 16:18', youtubeId:'dQw4w9WgXcQ' },
-  ],
-  programs: [
-    { id:'p1', name:'구름빵 독서교실', target:'아동', status:'운영 중', desc:'그림책과 독서로 세상을 배워가는 시간', icon:'📖', isNew:false },
-    { id:'p2', name:'문해교실', target:'어르신', status:'운영 중', desc:'한글을 배우고 쓰는 삶의 교실', icon:'✏️', isNew:false },
-    { id:'p3', name:'풋살·체육 프로그램', target:'아동·청소년', status:'모집 중', desc:'아이원스포츠 연계 전문 체육활동', icon:'⚽', isNew:true },
-    { id:'p4', name:'다자녀 동아리 모임', target:'가족', status:'준비 중', desc:'다자녀 가정 교제와 공동체 형성', icon:'👨‍👩‍👧‍👦', isNew:true },
-  ],
-  gallery: [],
-  inquiries: [
-    { id:'i1', name:'이민준', phone:'010-1234-5678', subject:'도서관 프로그램 문의', message:'독서교실 신청 방법이 궁금합니다.', confirmed:false, createdAt:'2025-08-18' },
-  ]
-};
+// ── 유틸 ──────────────────────────────────────────────────────────
 
-// ── 초기화 ─────────────────────────────────────────────────────────
+/** HTML 이스케이프 — 화면에 넣는 모든 데이터에 사용 (문의 내용 등 외부 입력 포함) */
+function esc(v) {
+  return String(v ?? '')
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
 
-try {
-  if (firebaseConfig.apiKey !== 'YOUR_API_KEY') {
-    app = initializeApp(firebaseConfig);
-    auth = getAuth(app);
-    db = getFirestore(app);
-    storage = getStorage(app);
-    isFirebaseReady = true;
-  }
-} catch(e) { console.warn('Firebase 초기화 실패:', e); }
+function extractYtId(str = '') {
+  const m = String(str).match(/(?:youtu\.be\/|v=|embed\/|shorts\/|live\/)([A-Za-z0-9_\-]{11})/);
+  if (m) return m[1];
+  return /^[A-Za-z0-9_\-]{11}$/.test(str) ? str : null;
+}
 
-// ── 노출 (전역) ────────────────────────────────────────────────────
+function todayStr() {
+  const d = new Date();
+  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+}
+
+function fmtTs(ts) {
+  if (!ts) return '';
+  if (ts.toDate) return ts.toDate().toLocaleDateString('ko-KR');
+  return String(ts);
+}
+
+function views(n) { return Number(n || 0).toLocaleString('ko-KR'); }
+
+function matches(text, q) { return !q || String(text || '').toLowerCase().includes(q.toLowerCase()); }
+
+function openModal(id) { document.getElementById(id).classList.add('open'); }
+window.closeModal = function(id) { document.getElementById(id).classList.remove('open'); };
+
+function showToast(msg, type='') {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'show' + (type ? ' '+type : '');
+  setTimeout(() => t.className = '', 2800);
+}
+
+/** 저장 중 오류가 나면 알림으로 보여줌 */
+async function guard(fn, failMsg = '저장 중 오류가 발생했습니다') {
+  try { return await fn(); }
+  catch (e) { console.error(e); showToast(`${failMsg}: ${e.code || e.message}`, 'error'); return undefined; }
+}
+
+const CAT_NOTICE = {church:'교회',library:'도서관',event:'행사'};
+const CAT_GALLERY = {church:'교회',worship:'예배',library:'도서관',program:'프로그램',event:'행사'};
+const CAT_VIDEO = {praise:'찬양',event:'행사',library:'도서관',etc:'기타'};
+
+// ── 로그인 ─────────────────────────────────────────────────────────
 
 window.doLogin = async function() {
   const email = document.getElementById('login-email').value.trim();
   const pw = document.getElementById('login-pw').value;
   const errEl = document.getElementById('login-error');
   errEl.style.display = 'none';
-
   if (!email || !pw) { errEl.textContent = '이메일과 비밀번호를 입력하세요.'; errEl.style.display = 'block'; return; }
-
-  if (!isFirebaseReady) {
-    // 데모 로그인
-    if (email === 'admin' && pw === 'admin1234') {
-      showAdmin({ email });
-    } else {
-      errEl.style.display = 'block';
-    }
-    return;
-  }
-
   try {
     const cred = await signInWithEmailAndPassword(auth, email, pw);
     showAdmin(cred.user);
   } catch(e) {
+    errEl.textContent = '이메일 또는 비밀번호가 올바르지 않습니다.';
     errEl.style.display = 'block';
   }
 };
 
 window.doLogout = async function() {
-  if (isFirebaseReady && auth) await signOut(auth);
+  await signOut(auth);
   document.getElementById('admin-app').style.display = 'none';
   document.getElementById('login-screen').style.display = 'flex';
 };
@@ -1104,77 +1389,57 @@ window.goPage = function(name, el) {
   document.querySelectorAll('.admin-page').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.sidebar-item').forEach(i => i.classList.remove('active'));
   document.getElementById(`page-${name}`).classList.add('active');
-  if (el) el.classList.add('active');
+  const item = el || document.querySelector(`.sidebar-item[onclick*="'${name}'"]`);
+  if (item) { item.classList.add('active'); item.scrollIntoView?.({block:'nearest', inline:'center'}); }
+  window.scrollTo(0, 0);
   loadPage(name);
 };
 
-if (isFirebaseReady) {
-  onAuthStateChanged(auth, user => {
-    if (user) showAdmin(user);
-  });
-}
-
-// ── 로그인 후 앱 표시 ──────────────────────────────────────────────
+onAuthStateChanged(auth, user => { if (user) showAdmin(user); });
 
 function showAdmin(user) {
-  currentUser = user;
   document.getElementById('login-screen').style.display = 'none';
   document.getElementById('admin-app').style.display = 'block';
   document.getElementById('user-email-display').textContent = user.email || '관리자';
-  if (!isFirebaseReady) {
-    document.getElementById('firebase-notice').style.display = 'block';
-  }
   loadPage('dashboard');
 }
 
-// ── 페이지별 데이터 로드 ──────────────────────────────────────────
-
 async function loadPage(name) {
-  switch(name) {
-    case 'dashboard': await loadDashboard(); break;
-    case 'notices':   await loadNotices(); break;
-    case 'sermons':   await loadSermons(); break;
-    case 'programs':  await loadPrograms(); break;
-    case 'gallery':   await loadGallery(); break;
-    case 'inquiries': await loadInquiries(); break;
-  }
+  await guard(async () => {
+    switch(name) {
+      case 'dashboard': await loadDashboard(); break;
+      case 'notices':   await loadNotices(); break;
+      case 'sermons':   await loadSermons(); break;
+      case 'videos':    await loadVideos(); break;
+      case 'programs':  await loadPrograms(); break;
+      case 'gallery':   await loadGallery(); break;
+      case 'inquiries': await loadInquiries(); break;
+      case 'settings':  await loadSettings(); break;
+    }
+  }, '불러오기 오류');
 }
 
 // ── 대시보드 ──────────────────────────────────────────────────────
 
 async function loadDashboard() {
-  let notices, sermons, gallery, inquiries;
+  const [nSnap, sSnap, gSnap, iSnap] = await Promise.all([
+    getDocs(collection(db, 'notices')),
+    getDocs(collection(db, 'sermons')),
+    getDocs(collection(db, 'gallery')),
+    getDocs(query(collection(db, 'inquiries'), orderBy('createdAt','desc'))),
+  ]);
+  // confirmed 필드가 없는 예전 문의도 '미확인'으로 셈
+  const unconfirmed = iSnap.docs.map(d=>({id:d.id,...d.data()})).filter(i => !i.confirmed);
 
-  if (isFirebaseReady) {
-    const [nSnap, sSnap, gSnap, iSnap] = await Promise.all([
-      getDocs(collection(db, 'notices')),
-      getDocs(collection(db, 'sermons')),
-      getDocs(collection(db, 'gallery')),
-      getDocs(query(collection(db, 'inquiries'), where('confirmed','==',false))),
-    ]);
-    notices = nSnap.docs;
-    sermons = sSnap.docs;
-    gallery = gSnap.docs;
-    inquiries = iSnap.docs;
+  document.getElementById('stat-notices').textContent = nSnap.size;
+  document.getElementById('stat-sermons').textContent = sSnap.size;
+  document.getElementById('stat-gallery').textContent = gSnap.size;
+  document.getElementById('stat-inquiries').textContent = unconfirmed.length;
 
-    document.getElementById('stat-notices').textContent = notices.length;
-    document.getElementById('stat-sermons').textContent = sermons.length;
-    document.getElementById('stat-gallery').textContent = gallery.length;
-    document.getElementById('stat-inquiries').textContent = inquiries.length;
-
-    // 최근 공지 3개
-    const recentN = nSnap.docs.sort((a,b)=> b.data().date?.localeCompare(a.data().date||'') || 0).slice(0,3);
-    renderDashNotices(recentN.map(d=>({id:d.id,...d.data()})));
-    const recentI = iSnap.docs.slice(0,3);
-    renderDashInquiries(recentI.map(d=>({id:d.id,...d.data()})));
-  } else {
-    document.getElementById('stat-notices').textContent = demoData.notices.length;
-    document.getElementById('stat-sermons').textContent = demoData.sermons.length;
-    document.getElementById('stat-gallery').textContent = demoData.gallery.length;
-    document.getElementById('stat-inquiries').textContent = demoData.inquiries.filter(i=>!i.confirmed).length;
-    renderDashNotices(demoData.notices.slice(0,3));
-    renderDashInquiries(demoData.inquiries.slice(0,3));
-  }
+  const recentN = nSnap.docs.map(d=>({id:d.id,...d.data()}))
+    .sort((a,b)=> String(b.date||'').localeCompare(String(a.date||''))).slice(0,3);
+  renderDashNotices(recentN);
+  renderDashInquiries(unconfirmed.slice(0,3));
 }
 
 function renderDashNotices(items) {
@@ -1182,60 +1447,77 @@ function renderDashNotices(items) {
   if (!items.length) { el.innerHTML = '<div class="empty-state"><div class="empty-icon">📢</div><p>공지사항이 없습니다</p></div>'; return; }
   el.innerHTML = items.map(n => `
     <div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--gray-100);">
-      <span class="badge badge-${n.category}">${{church:'교회',library:'도서관',event:'행사'}[n.category]||n.category}</span>
-      <span style="font-size:0.875rem;flex:1;">${n.title}</span>
-      <span style="font-size:0.8rem;color:var(--gray-400);">${n.date||''}</span>
+      <span class="badge badge-${esc(n.category)}">${esc(CAT_NOTICE[n.category]||n.category)}</span>
+      <span style="font-size:0.875rem;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${esc(n.title)}</span>
+      <span style="font-size:0.8rem;color:var(--gray-400);white-space:nowrap;">${esc(n.date)}</span>
     </div>`).join('');
 }
 
 function renderDashInquiries(items) {
   const el = document.getElementById('dash-inquiries');
-  if (!items.length) { el.innerHTML = '<div class="empty-state"><div class="empty-icon">✉️</div><p>문의가 없습니다</p></div>'; return; }
+  if (!items.length) { el.innerHTML = '<div class="empty-state"><div class="empty-icon">✉️</div><p>미확인 문의가 없습니다</p></div>'; return; }
   el.innerHTML = items.map(i => `
     <div style="padding:8px 0;border-bottom:1px solid var(--gray-100);">
       <div style="display:flex;justify-content:space-between;margin-bottom:2px;">
-        <span style="font-size:0.875rem;font-weight:500;">${i.name}</span>
-        <span style="font-size:0.8rem;color:var(--gray-400);">${i.createdAt||''}</span>
+        <span style="font-size:0.875rem;font-weight:500;">${esc(i.name)}</span>
+        <span style="font-size:0.8rem;color:var(--gray-400);">${esc(fmtTs(i.createdAt))}</span>
       </div>
-      <div style="font-size:0.82rem;color:var(--gray-600);">${i.subject}</div>
+      <div style="font-size:0.82rem;color:var(--gray-600);">${esc(i.subject)}</div>
     </div>`).join('');
 }
 
 // ── 공지 ──────────────────────────────────────────────────────────
 
 let allNotices = [];
+let noticeCat = 'all';
+
+function isPinned(n) { return !!n.pinned && (!n.pinUntil || n.pinUntil >= todayStr()); }
 
 async function loadNotices() {
-  allNotices = isFirebaseReady
-    ? (await getDocs(query(collection(db,'notices'), orderBy('date','desc')))).docs.map(d=>({id:d.id,...d.data()}))
-    : [...demoData.notices];
-  renderNoticesTable(allNotices);
+  allNotices = (await getDocs(query(collection(db,'notices'), orderBy('date','desc')))).docs.map(d=>({id:d.id,...d.data()}));
+  allNotices.sort((a,b) => (isPinned(b) - isPinned(a)) || String(b.date||'').localeCompare(String(a.date||'')));
+  renderNoticesTable();
 }
 
-function renderNoticesTable(items) {
+function renderNoticesTable() {
+  const q = document.getElementById('notice-search').value.trim();
+  const items = allNotices.filter(n => (noticeCat === 'all' || n.category === noticeCat) && matches(n.title, q));
   const tbody = document.getElementById('notices-tbody');
   if (!items.length) {
-    tbody.innerHTML = '<tr><td colspan="5"><div class="empty-state"><div class="empty-icon">📢</div><p>공지사항이 없습니다</p></div></td></tr>';
+    tbody.innerHTML = `<tr><td colspan="5"><div class="empty-state"><div class="empty-icon">📢</div><p>${q ? '검색 결과가 없습니다' : '공지사항이 없습니다'}</p></div></td></tr>`;
     return;
   }
-  const catMap = {church:'교회',library:'도서관',event:'행사'};
-  tbody.innerHTML = items.map(n => `
-    <tr>
-      <td><span class="badge badge-${n.category}">${catMap[n.category]||n.category}</span></td>
-      <td>${n.title}</td>
-      <td>${n.date||''}</td>
-      <td><span style="font-size:0.8rem;color:var(--gray-600);">게시 중</span></td>
-      <td>
-        <button class="btn btn-secondary btn-sm" onclick="editNotice('${n.id}')">수정</button>
-        <button class="btn btn-danger btn-sm" style="margin-left:4px;" onclick="deleteItem('notices','${n.id}')">삭제</button>
+  tbody.innerHTML = items.map(n => {
+    const pinned = isPinned(n);
+    const expired = n.pinned && !pinned;
+    return `
+    <tr class="${pinned ? 'row-pinned' : ''}">
+      <td><span class="badge badge-${esc(n.category)}">${esc(CAT_NOTICE[n.category]||n.category)}</span></td>
+      <td>${pinned ? '<span class="pin-tag">📌 고정</span>' : ''}${esc(n.title)}${
+        pinned && n.pinUntil ? `<div style="font-size:0.75rem;color:var(--gray-600);">~${esc(n.pinUntil)}까지 고정</div>` : ''}${
+        expired ? `<div style="font-size:0.75rem;color:var(--gray-400);">고정 기간 끝남 (${esc(n.pinUntil)})</div>` : ''}</td>
+      <td class="nowrap">${esc(n.date)}</td>
+      <td>${views(n.views)}</td>
+      <td class="nowrap">
+        <button class="btn btn-secondary btn-sm" onclick="togglePin('${esc(n.id)}')">${pinned ? '고정 해제' : '📌 고정'}</button>
+        <button class="btn btn-secondary btn-sm" onclick="editNotice('${esc(n.id)}')">수정</button>
+        <button class="btn btn-danger btn-sm" onclick="deleteItem('notices','${esc(n.id)}')">삭제</button>
       </td>
-    </tr>`).join('');
+    </tr>`;
+  }).join('');
 }
 
 window.filterNotices = function(cat, el) {
   document.querySelectorAll('#page-notices .tab-btn').forEach(b=>b.classList.remove('active'));
   el.classList.add('active');
-  renderNoticesTable(cat==='all' ? allNotices : allNotices.filter(n=>n.category===cat));
+  noticeCat = cat;
+  renderNoticesTable();
+};
+window.searchNotices = () => renderNoticesTable();
+
+window.togglePinUntil = function() {
+  document.getElementById('notice-pin-until-wrap').style.display =
+    document.getElementById('notice-pinned').checked ? 'block' : 'none';
 };
 
 window.openNoticeModal = function(data) {
@@ -1245,6 +1527,9 @@ window.openNoticeModal = function(data) {
   document.getElementById('notice-date').value = data?.date || todayStr();
   document.getElementById('notice-title').value = data?.title || '';
   document.getElementById('notice-content').value = data?.content || '';
+  document.getElementById('notice-pinned').checked = data ? isPinned(data) : false;
+  document.getElementById('notice-pin-until').value = (data && isPinned(data) && data.pinUntil) || '';
+  togglePinUntil();
   openModal('notice-modal');
 };
 
@@ -1253,30 +1538,40 @@ window.editNotice = function(id) {
   if (n) openNoticeModal(n);
 };
 
+window.togglePin = async function(id) {
+  const n = allNotices.find(x=>x.id===id);
+  if (!n) return;
+  const pin = !isPinned(n);
+  const r = await guard(async () => {
+    await updateDoc(doc(db,'notices',id), { pinned: pin, pinUntil: '', updatedAt: serverTimestamp() });
+    return true;
+  });
+  if (!r) return;
+  showToast(pin ? '맨 위에 고정했습니다' : '고정을 해제했습니다');
+  await loadNotices();
+};
+
 window.saveNotice = async function() {
   const id = document.getElementById('notice-edit-id').value;
+  const pinned = document.getElementById('notice-pinned').checked;
   const data = {
     category: document.getElementById('notice-category').value,
     date: document.getElementById('notice-date').value,
     title: document.getElementById('notice-title').value.trim(),
     content: document.getElementById('notice-content').value.trim(),
+    pinned,
+    pinUntil: pinned ? document.getElementById('notice-pin-until').value : '',
   };
   if (!data.title) { showToast('제목을 입력해주세요', 'error'); return; }
+  if (!data.date) { showToast('날짜를 입력해주세요', 'error'); return; }
+  if (data.pinUntil && data.pinUntil < todayStr()) { showToast('고정 해제일이 이미 지났습니다', 'error'); return; }
 
-  if (isFirebaseReady) {
-    if (id) {
-      await updateDoc(doc(db,'notices',id), {...data, updatedAt:serverTimestamp()});
-    } else {
-      await addDoc(collection(db,'notices'), {...data, createdAt:serverTimestamp()});
-    }
-  } else {
-    if (id) {
-      const i = demoData.notices.findIndex(x=>x.id===id);
-      if (i>=0) demoData.notices[i] = {...demoData.notices[i],...data};
-    } else {
-      demoData.notices.unshift({id:'n'+Date.now(),...data});
-    }
-  }
+  const r = await guard(async () => {
+    if (id) await updateDoc(doc(db,'notices',id), {...data, updatedAt:serverTimestamp()});
+    else await addDoc(collection(db,'notices'), {...data, createdAt:serverTimestamp()});
+    return true;
+  });
+  if (!r) return;
   closeModal('notice-modal');
   showToast(id ? '공지가 수정되었습니다' : '공지가 등록되었습니다');
   await loadNotices();
@@ -1287,35 +1582,36 @@ window.saveNotice = async function() {
 let allSermons = [];
 
 async function loadSermons() {
-  allSermons = isFirebaseReady
-    ? (await getDocs(query(collection(db,'sermons'), orderBy('date','desc')))).docs.map(d=>({id:d.id,...d.data()}))
-    : [...demoData.sermons];
-  renderSermonsTable(allSermons);
+  allSermons = (await getDocs(query(collection(db,'sermons'), orderBy('date','desc')))).docs.map(d=>({id:d.id,...d.data()}));
+  renderSermonsTable();
 }
 
-function renderSermonsTable(items) {
+function renderSermonsTable() {
+  const q = document.getElementById('sermon-search').value.trim();
+  const items = allSermons.filter(s => matches(`${s.title} ${s.scripture||''}`, q));
   const tbody = document.getElementById('sermons-tbody');
   if (!items.length) {
-    tbody.innerHTML = '<tr><td colspan="6"><div class="empty-state"><div class="empty-icon">🎙️</div><p>등록된 설교가 없습니다</p></div></td></tr>';
+    tbody.innerHTML = `<tr><td colspan="7"><div class="empty-state"><div class="empty-icon">🎙️</div><p>${q ? '검색 결과가 없습니다' : '등록된 설교가 없습니다'}</p></div></td></tr>`;
     return;
   }
   tbody.innerHTML = items.map(s => {
-    const ytId = extractYtId(s.youtubeId || s.youtubeUrl || '');
-    const thumb = ytId ? `https://img.youtube.com/vi/${ytId}/default.jpg` : '';
+    const ytId = extractYtId(s.youtubeId || '') || extractYtId(s.youtubeUrl || '');
     return `
     <tr>
-      <td>${thumb ? `<img src="${thumb}" style="width:64px;height:36px;object-fit:cover;border-radius:4px;">` : '—'}</td>
-      <td>${s.title}</td>
-      <td>${s.preacher||'—'}</td>
-      <td>${s.date||''}</td>
-      <td style="font-size:0.82rem;">${s.scripture||'—'}</td>
-      <td>
-        <button class="btn btn-secondary btn-sm" onclick="editSermon('${s.id}')">수정</button>
-        <button class="btn btn-danger btn-sm" style="margin-left:4px;" onclick="deleteItem('sermons','${s.id}')">삭제</button>
+      <td>${ytId ? `<img src="https://img.youtube.com/vi/${ytId}/default.jpg" style="width:64px;height:36px;object-fit:cover;border-radius:4px;">` : '—'}</td>
+      <td>${esc(s.title)}</td>
+      <td>${esc(s.preacher||'—')}</td>
+      <td class="nowrap">${esc(s.date)}</td>
+      <td style="font-size:0.82rem;">${s.scripture ? esc(s.scripture) : '<span style="color:var(--danger);">본문 없음</span>'}</td>
+      <td>${views(s.views)}</td>
+      <td class="nowrap">
+        <button class="btn btn-secondary btn-sm" onclick="editSermon('${esc(s.id)}')">수정</button>
+        <button class="btn btn-danger btn-sm" onclick="deleteItem('sermons','${esc(s.id)}')">삭제</button>
       </td>
     </tr>`;
   }).join('');
 }
+window.searchSermons = () => renderSermonsTable();
 
 window.openSermonModal = function(data) {
   document.getElementById('sermon-modal-title').textContent = data ? '설교 수정' : '설교 등록';
@@ -1324,7 +1620,7 @@ window.openSermonModal = function(data) {
   document.getElementById('sermon-preacher').value = data?.preacher || '김철홍 목사';
   document.getElementById('sermon-date').value = data?.date || todayStr();
   document.getElementById('sermon-scripture').value = data?.scripture || '';
-  document.getElementById('sermon-youtube').value = data?.youtubeId || data?.youtubeUrl || '';
+  document.getElementById('sermon-youtube').value = data?.youtubeUrl || data?.youtubeId || '';
   document.getElementById('youtube-preview').style.display = 'none';
   openModal('sermon-modal');
 };
@@ -1335,8 +1631,7 @@ window.editSermon = function(id) {
 };
 
 window.previewYoutube = function() {
-  const val = document.getElementById('sermon-youtube').value.trim();
-  const id = extractYtId(val);
+  const id = extractYtId(document.getElementById('sermon-youtube').value.trim());
   if (!id) { showToast('유효한 유튜브 URL이 아닙니다', 'error'); return; }
   document.getElementById('yt-thumb').src = `https://img.youtube.com/vi/${id}/hqdefault.jpg`;
   document.getElementById('youtube-preview').style.display = 'block';
@@ -1351,25 +1646,118 @@ window.saveSermon = async function() {
     preacher: document.getElementById('sermon-preacher').value.trim(),
     date: document.getElementById('sermon-date').value,
     scripture: document.getElementById('sermon-scripture').value.trim(),
-    youtubeId: ytId || ytRaw,
+    youtubeId: ytId || '',
     youtubeUrl: ytRaw,
   };
   if (!data.title) { showToast('제목을 입력해주세요', 'error'); return; }
+  if (!data.date) { showToast('날짜를 입력해주세요', 'error'); return; }
+  if (!ytId) { showToast('유튜브 URL을 확인해주세요', 'error'); return; }
+  if (!data.scripture && !confirm('설교 본문(성경 구절)이 비어 있습니다.\n그대로 저장할까요?')) return;
 
-  if (isFirebaseReady) {
+  const r = await guard(async () => {
     if (id) await updateDoc(doc(db,'sermons',id), {...data, updatedAt:serverTimestamp()});
     else await addDoc(collection(db,'sermons'), {...data, createdAt:serverTimestamp()});
-  } else {
-    if (id) {
-      const i = demoData.sermons.findIndex(x=>x.id===id);
-      if (i>=0) demoData.sermons[i] = {...demoData.sermons[i],...data};
-    } else {
-      demoData.sermons.unshift({id:'s'+Date.now(),...data});
-    }
-  }
+    return true;
+  });
+  if (!r) return;
   closeModal('sermon-modal');
   showToast(id ? '설교가 수정되었습니다' : '설교가 등록되었습니다');
   await loadSermons();
+};
+
+// ── 영상 게시판 ───────────────────────────────────────────────────
+
+let allVideos = [];
+let videoCat = 'all';
+
+async function loadVideos() {
+  allVideos = (await getDocs(collection(db,'videos'))).docs.map(d=>({id:d.id,...d.data()}))
+    .sort((a,b)=> String(b.date||'').localeCompare(String(a.date||'')));
+  renderVideosTable();
+}
+
+function renderVideosTable() {
+  const q = document.getElementById('video-search').value.trim();
+  const items = allVideos.filter(v => (videoCat === 'all' || (v.category||'etc') === videoCat) && matches(v.title, q));
+  const tbody = document.getElementById('videos-tbody');
+  if (!items.length) {
+    tbody.innerHTML = `<tr><td colspan="6"><div class="empty-state"><div class="empty-icon">🎬</div><p>${q ? '검색 결과가 없습니다' : '등록된 영상이 없습니다'}</p></div></td></tr>`;
+    return;
+  }
+  tbody.innerHTML = items.map(v => {
+    const ytId = extractYtId(v.youtubeId || '') || extractYtId(v.youtubeUrl || '');
+    return `
+    <tr>
+      <td>${ytId ? `<img src="https://img.youtube.com/vi/${ytId}/default.jpg" style="width:64px;height:36px;object-fit:cover;border-radius:4px;">` : '—'}</td>
+      <td>${esc(v.title)}</td>
+      <td><span class="badge badge-${esc(v.category||'etc')}">${esc(CAT_VIDEO[v.category]||'기타')}</span></td>
+      <td class="nowrap">${esc(v.date)}</td>
+      <td>${views(v.views)}</td>
+      <td class="nowrap">
+        <button class="btn btn-secondary btn-sm" onclick="editVideo('${esc(v.id)}')">수정</button>
+        <button class="btn btn-danger btn-sm" onclick="deleteItem('videos','${esc(v.id)}')">삭제</button>
+      </td>
+    </tr>`;
+  }).join('');
+}
+
+window.filterVideos = function(cat, el) {
+  document.querySelectorAll('#page-videos .tab-btn').forEach(b=>b.classList.remove('active'));
+  el.classList.add('active');
+  videoCat = cat;
+  renderVideosTable();
+};
+window.searchVideos = () => renderVideosTable();
+
+window.openVideoModal = function(data) {
+  document.getElementById('video-modal-title').textContent = data ? '영상 수정' : '영상 등록';
+  document.getElementById('video-edit-id').value = data?.id || '';
+  document.getElementById('video-title').value = data?.title || '';
+  document.getElementById('video-category').value = data?.category || 'praise';
+  document.getElementById('video-date').value = data?.date || todayStr();
+  document.getElementById('video-youtube').value = data?.youtubeUrl || data?.youtubeId || '';
+  document.getElementById('video-desc').value = data?.description || '';
+  document.getElementById('video-preview').style.display = 'none';
+  openModal('video-modal');
+};
+
+window.editVideo = function(id) {
+  const v = allVideos.find(x=>x.id===id);
+  if (v) openVideoModal(v);
+};
+
+window.previewVideo = function() {
+  const id = extractYtId(document.getElementById('video-youtube').value.trim());
+  if (!id) { showToast('유효한 유튜브 URL이 아닙니다', 'error'); return; }
+  document.getElementById('video-thumb').src = `https://img.youtube.com/vi/${id}/hqdefault.jpg`;
+  document.getElementById('video-preview').style.display = 'block';
+};
+
+window.saveVideo = async function() {
+  const id = document.getElementById('video-edit-id').value;
+  const ytRaw = document.getElementById('video-youtube').value.trim();
+  const ytId = extractYtId(ytRaw);
+  const data = {
+    title: document.getElementById('video-title').value.trim(),
+    category: document.getElementById('video-category').value,
+    date: document.getElementById('video-date').value,
+    youtubeId: ytId || '',
+    youtubeUrl: ytRaw,
+    description: document.getElementById('video-desc').value.trim(),
+  };
+  if (!data.title) { showToast('제목을 입력해주세요', 'error'); return; }
+  if (!data.date) { showToast('날짜를 입력해주세요', 'error'); return; }
+  if (!ytId) { showToast('유튜브 URL을 확인해주세요', 'error'); return; }
+
+  const r = await guard(async () => {
+    if (id) await updateDoc(doc(db,'videos',id), {...data, updatedAt:serverTimestamp()});
+    else await addDoc(collection(db,'videos'), {...data, createdAt:serverTimestamp()});
+    return true;
+  });
+  if (!r) return;
+  closeModal('video-modal');
+  showToast(id ? '영상이 수정되었습니다' : '영상이 등록되었습니다');
+  await loadVideos();
 };
 
 // ── 프로그램 ──────────────────────────────────────────────────────
@@ -1377,9 +1765,7 @@ window.saveSermon = async function() {
 let allPrograms = [];
 
 async function loadPrograms() {
-  allPrograms = isFirebaseReady
-    ? (await getDocs(collection(db,'programs'))).docs.map(d=>({id:d.id,...d.data()}))
-    : [...demoData.programs];
+  allPrograms = (await getDocs(collection(db,'programs'))).docs.map(d=>({id:d.id,...d.data()}));
   renderProgramsTable(allPrograms);
 }
 
@@ -1392,13 +1778,13 @@ function renderProgramsTable(items) {
   const statusColor = {'운영 중':'#188038','모집 중':'#1A73E8','준비 중':'#B06000','종료':'#5F6368'};
   tbody.innerHTML = items.map(p => `
     <tr>
-      <td>${p.icon||'📌'} ${p.name}${p.isNew||p.isNew==='true'?' <span class="badge badge-new">NEW</span>':''}</td>
-      <td>${p.target||'—'}</td>
-      <td><span style="font-size:0.82rem;color:${statusColor[p.status]||'#333'};font-weight:600;">${p.status||''}</span></td>
-      <td style="font-size:0.82rem;color:var(--gray-600);">${p.desc||''}</td>
-      <td>
-        <button class="btn btn-secondary btn-sm" onclick="editProgram('${p.id}')">수정</button>
-        <button class="btn btn-danger btn-sm" style="margin-left:4px;" onclick="deleteItem('programs','${p.id}')">삭제</button>
+      <td>${esc(p.icon||'📌')} ${esc(p.name)}${p.isNew===true||p.isNew==='true'?' <span class="badge badge-new">NEW</span>':''}</td>
+      <td>${esc(p.target||'—')}</td>
+      <td><span style="font-size:0.82rem;color:${statusColor[p.status]||'#333'};font-weight:600;">${esc(p.status||'')}</span></td>
+      <td style="font-size:0.82rem;color:var(--gray-600);">${esc(p.desc||'')}</td>
+      <td class="nowrap">
+        <button class="btn btn-secondary btn-sm" onclick="editProgram('${esc(p.id)}')">수정</button>
+        <button class="btn btn-danger btn-sm" onclick="deleteItem('programs','${esc(p.id)}')">삭제</button>
       </td>
     </tr>`).join('');
 }
@@ -1434,26 +1820,64 @@ window.saveProgram = async function() {
   };
   if (!data.name) { showToast('프로그램명을 입력해주세요', 'error'); return; }
 
-  if (isFirebaseReady) {
+  const r = await guard(async () => {
     if (id) await updateDoc(doc(db,'programs',id), {...data, updatedAt:serverTimestamp()});
     else await addDoc(collection(db,'programs'), {...data, createdAt:serverTimestamp()});
-  } else {
-    if (id) {
-      const i = demoData.programs.findIndex(x=>x.id===id);
-      if (i>=0) demoData.programs[i] = {...demoData.programs[i],...data};
-    } else {
-      demoData.programs.push({id:'p'+Date.now(),...data});
-    }
-  }
+    return true;
+  });
+  if (!r) return;
   closeModal('program-modal');
   showToast(id ? '프로그램이 수정되었습니다' : '프로그램이 등록되었습니다');
   await loadPrograms();
 };
 
-// ── 갤러리 ────────────────────────────────────────────────────────
+// ── 사진 공통: 업로드 전 크기 줄이기 (휴대폰 사진이 너무 커서 느려지는 것 방지) ──
+
+const MAX_SIDE = 2000;
+
+async function shrinkImage(file) {
+  if (!/^image\/(jpeg|png|webp)$/.test(file.type)) return file;
+  try {
+    const bmp = await createImageBitmap(file, { imageOrientation: 'from-image' });
+    const scale = Math.min(1, MAX_SIDE / Math.max(bmp.width, bmp.height));
+    if (scale === 1 && file.size < 1.5 * 1024 * 1024) { bmp.close?.(); return file; }
+    const canvas = document.createElement('canvas');
+    canvas.width = Math.round(bmp.width * scale);
+    canvas.height = Math.round(bmp.height * scale);
+    canvas.getContext('2d').drawImage(bmp, 0, 0, canvas.width, canvas.height);
+    bmp.close?.();
+    const blob = await new Promise(res => canvas.toBlob(res, 'image/jpeg', 0.85));
+    if (!blob || blob.size >= file.size) return file;
+    return new File([blob], file.name.replace(/\.\w+$/, '') + '.jpg', { type: 'image/jpeg' });
+  } catch (e) {
+    console.warn('사진 크기 조정 실패, 원본 업로드:', e);
+    return file;
+  }
+}
+
+async function uploadOne(file, date, onDone) {
+  const small = await shrinkImage(file);
+  const safeName = small.name.replace(/[^\w.\-가-힣]/g, '_');
+  const storRef = ref(storage, `gallery/${date}/${Date.now()}_${safeName}`);
+  const task = uploadBytesResumable(storRef, small, { contentType: small.type });
+  await new Promise((res, rej) => task.on('state_changed', null, rej, res));
+  const url = await getDownloadURL(task.snapshot.ref);
+  onDone?.();
+  return { url, path: storRef.fullPath };
+}
+
+async function removeStorage(paths) {
+  for (const p of paths) {
+    if (!p) continue;
+    try { await deleteObject(ref(storage, p)); } catch (e) { console.warn('저장소 파일 삭제 실패:', p, e.code); }
+  }
+}
+
+// ── 갤러리: 새 그룹 업로드 ─────────────────────────────────────────
 
 let pendingFiles = [];
 let allGallery = [];
+let galleryCat = 'all';
 
 window.handleFileSelect = function(e) { addFiles(Array.from(e.target.files)); e.target.value = ''; };
 window.handleDragOver = function(e) { e.preventDefault(); document.getElementById('upload-zone').classList.add('dragover'); };
@@ -1464,31 +1888,30 @@ window.handleDrop = function(e) {
   addFiles(Array.from(e.dataTransfer.files).filter(f=>f.type.startsWith('image/')));
 };
 
+let previewSeq = 0;
 function addFiles(files) {
+  const grid = document.getElementById('preview-grid');
   files.forEach(f => {
-    if (pendingFiles.find(p=>p.name===f.name)) return;
-    pendingFiles.push(f);
-    const reader = new FileReader();
-    reader.onload = e2 => {
-      const grid = document.getElementById('preview-grid');
-      const div = document.createElement('div');
-      div.className = 'preview-item';
-      div.dataset.name = f.name;
-      div.innerHTML = `<img src="${e2.target.result}"><button class="preview-remove" onclick="removePreview('${f.name}')">✕</button>`;
-      grid.appendChild(div);
-    };
-    reader.readAsDataURL(f);
+    if (pendingFiles.find(p=>p.file.name===f.name && p.file.size===f.size)) return;
+    const key = 'pf' + (++previewSeq);
+    pendingFiles.push({ key, file: f });
+    const div = document.createElement('div');
+    div.className = 'preview-item';
+    div.dataset.key = key;
+    const img = document.createElement('img');
+    img.src = URL.createObjectURL(f);
+    const btn = document.createElement('button');
+    btn.className = 'preview-remove';
+    btn.textContent = '✕';
+    btn.onclick = () => { pendingFiles = pendingFiles.filter(p=>p.key!==key); URL.revokeObjectURL(img.src); div.remove(); };
+    div.append(img, btn);
+    grid.appendChild(div);
   });
 }
 
-window.removePreview = function(name) {
-  pendingFiles = pendingFiles.filter(f=>f.name!==name);
-  const el = document.querySelector(`[data-name="${name}"]`);
-  if (el) el.remove();
-};
-
 window.clearPreview = function() {
   pendingFiles = [];
+  document.querySelectorAll('#preview-grid img').forEach(i => URL.revokeObjectURL(i.src));
   document.getElementById('preview-grid').innerHTML = '';
   document.getElementById('upload-status').textContent = '';
 };
@@ -1498,81 +1921,211 @@ window.uploadGallery = async function() {
   const category = document.getElementById('gallery-category').value;
   const date = document.getElementById('gallery-date').value || todayStr();
   const title = document.getElementById('gallery-title').value.trim();
-  const status = document.getElementById('upload-status');
-  status.textContent = `0 / ${pendingFiles.length} 업로드 중...`;
+  if (!title) { showToast('행사명을 입력해주세요', 'error'); document.getElementById('gallery-title').focus(); return; }
 
-  if (!isFirebaseReady) {
-    // 데모 모드: URL 없이 저장
-    pendingFiles.forEach(f => {
-      demoData.gallery.push({ id:'g'+Date.now()+Math.random(), category, date, title:title||f.name, url:'' });
+  const status = document.getElementById('upload-status');
+  const total = pendingFiles.length;
+  let done = 0;
+  status.textContent = `0 / ${total} 업로드 중...`;
+
+  const uploaded = [];
+  const r = await guard(async () => {
+    for (const { file } of pendingFiles) {
+      uploaded.push(await uploadOne(file, date, () => { done++; status.textContent = `${done} / ${total} 완료`; }));
+    }
+    const urls = uploaded.map(u=>u.url);
+    await addDoc(collection(db,'gallery'), {
+      title, category, date,
+      urls,
+      url: urls[0],
+      storPaths: uploaded.map(u=>u.path),
+      createdAt: serverTimestamp()
     });
-    showToast(`${pendingFiles.length}장이 등록되었습니다`);
-    clearPreview();
-    await loadGallery();
+    return true;
+  }, '업로드 실패');
+
+  if (!r) {
+    await removeStorage(uploaded.map(u=>u.path));   // 반쯤 올라간 파일 정리
+    status.textContent = '업로드 실패';
     return;
   }
-
-  let done = 0;
-  for (const file of pendingFiles) {
-    const storRef = ref(storage, `gallery/${date}/${Date.now()}_${file.name}`);
-    const task = uploadBytesResumable(storRef, file);
-    await new Promise((res, rej) => {
-      task.on('state_changed', null, rej, async () => {
-        const url = await getDownloadURL(task.snapshot.ref);
-        await addDoc(collection(db,'gallery'), {
-          url, category, date, title:title||file.name,
-          storPath: storRef.fullPath, createdAt: serverTimestamp()
-        });
-        done++;
-        status.textContent = `${done} / ${pendingFiles.length} 완료`;
-        res();
-      });
-    });
-  }
-
-  showToast(`${pendingFiles.length}장 업로드 완료`);
+  showToast(`${total}장 업로드 완료`);
+  document.getElementById('gallery-title').value = '';
   clearPreview();
   await loadGallery();
 };
 
 async function loadGallery() {
-  allGallery = isFirebaseReady
-    ? (await getDocs(query(collection(db,'gallery'), orderBy('date','desc')))).docs.map(d=>({id:d.id,...d.data()}))
-    : [...demoData.gallery];
-  renderGalleryGrid(allGallery);
+  allGallery = (await getDocs(collection(db,'gallery'))).docs.map(d=>({id:d.id,...d.data()}))
+    .sort((a,b)=> String(b.date||'').localeCompare(String(a.date||'')));
+  renderGalleryGrid();
 }
 
-function renderGalleryGrid(items) {
+function groupPhotos(g) {
+  const urls = g.urls?.length ? g.urls : (g.url ? [g.url] : []);
+  const paths = g.storPaths?.length ? g.storPaths : (g.storPath ? [g.storPath] : []);
+  return urls.map((url, i) => ({ url, path: paths[i] || '' }));
+}
+
+function renderGalleryGrid() {
+  const q = document.getElementById('gallery-search').value.trim();
+  const items = allGallery.filter(g => (galleryCat === 'all' || g.category === galleryCat) && matches(g.title, q));
   const grid = document.getElementById('gallery-grid');
   if (!items.length) {
-    grid.innerHTML = '<div class="empty-state" style="grid-column:1/-1;"><div class="empty-icon">🖼️</div><p>등록된 사진이 없습니다</p></div>';
+    grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1;"><div class="empty-icon">🖼️</div><p>${q ? '검색 결과가 없습니다' : '등록된 사진이 없습니다'}</p></div>`;
     return;
   }
-  const catLabel = {church:'교회',worship:'예배',library:'도서관',program:'프로그램',event:'행사'};
-  grid.innerHTML = items.map(g => `
-    <div style="position:relative;">
-      <div style="aspect-ratio:1;border-radius:8px;overflow:hidden;background:var(--gray-100);">
-        ${g.url ? `<img src="${g.url}" style="width:100%;height:100%;object-fit:cover;">` : `<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:32px;">🖼️</div>`}
+  grid.innerHTML = items.map(g => {
+    const photos = groupPhotos(g);
+    const cover = photos[0]?.url || '';
+    return `
+    <div>
+      <div class="ag-thumb" onclick="openGalleryEdit('${esc(g.id)}')">
+        ${cover ? `<img src="${esc(cover)}" loading="lazy">` : `<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:32px;">🖼️</div>`}
+        ${photos.length > 1 ? `<div class="ag-count">${photos.length}장</div>` : ''}
       </div>
-      <div style="position:absolute;top:4px;left:4px;"><span class="badge badge-library" style="font-size:0.68rem;">${catLabel[g.category]||g.category}</span></div>
-      <button class="btn btn-danger btn-sm" style="width:100%;margin-top:4px;padding:4px;" onclick="deleteGalleryItem('${g.id}','${g.storPath||''}')">삭제</button>
-    </div>`).join('');
+      <div class="ag-title" title="${esc(g.title)}">${esc(g.title||'(행사명 없음)')}</div>
+      <div class="ag-meta">
+        <span class="badge badge-library" style="font-size:0.65rem;">${esc(CAT_GALLERY[g.category]||g.category)}</span>
+        <span>${esc(g.date)}</span><span>· 조회 ${views(g.views)}</span>
+      </div>
+      <div class="ag-actions">
+        <button class="btn btn-secondary btn-sm" onclick="openGalleryEdit('${esc(g.id)}')">편집</button>
+      </div>
+    </div>`;
+  }).join('');
 }
 
 window.filterGallery = function(cat, el) {
   document.querySelectorAll('#page-gallery .tab-btn').forEach(b=>b.classList.remove('active'));
   el.classList.add('active');
-  renderGalleryGrid(cat==='all' ? allGallery : allGallery.filter(g=>g.category===cat));
+  galleryCat = cat;
+  renderGalleryGrid();
+};
+window.searchGallery = () => renderGalleryGrid();
+
+// ── 갤러리: 그룹 편집 (행사명·날짜·카테고리, 사진 추가/삭제/순서/대표) ──
+
+let ge = null;  // { id, photos:[{url,path,file?,preview?}], removed:[paths] }
+
+window.openGalleryEdit = function(id) {
+  const g = allGallery.find(x=>x.id===id);
+  if (!g) return;
+  ge = { id, photos: groupPhotos(g), removed: [] };
+  document.getElementById('ge-title').value = g.title || '';
+  document.getElementById('ge-category').value = g.category || 'church';
+  document.getElementById('ge-date').value = g.date || '';
+  document.getElementById('ge-status').textContent = '';
+  renderGePhotos();
+  openModal('gallery-modal');
 };
 
-window.deleteGalleryItem = async function(id, storPath) {
-  if (!confirm('이 사진을 삭제할까요?')) return;
-  if (isFirebaseReady) {
-    await deleteDoc(doc(db,'gallery',id));
-    if (storPath) { try { await deleteObject(ref(storage,storPath)); } catch(e) {} }
-  } else {
-    demoData.gallery = demoData.gallery.filter(g=>g.id!==id);
+function renderGePhotos() {
+  const wrap = document.getElementById('ge-photos');
+  const n = ge.photos.length;
+  document.getElementById('ge-count').textContent = `(${n}장)`;
+  wrap.innerHTML = ge.photos.map((p, i) => `
+    <div class="ge-photo ${i===0 ? 'cover' : ''} ${p.file ? 'new' : ''}">
+      <img src="${esc(p.preview || p.url)}" loading="lazy">
+      ${i===0 ? '<span class="ge-label cover">대표</span>' : (p.file ? '<span class="ge-label new">추가 예정</span>' : '')}
+      <div class="ge-tools">
+        <button title="앞으로" onclick="geMove(${i},-1)" ${i===0?'disabled':''}>◀</button>
+        <button title="대표사진으로" onclick="geCover(${i})" ${i===0?'disabled':''}>★</button>
+        <button title="뒤로" onclick="geMove(${i},1)" ${i===n-1?'disabled':''}>▶</button>
+        <button title="삭제" class="del" onclick="geRemove(${i})">🗑</button>
+      </div>
+    </div>`).join('') || '<p style="grid-column:1/-1;color:var(--gray-400);font-size:0.9rem;">사진이 없습니다. 사진을 추가하세요.</p>';
+}
+
+window.geMove = function(i, d) {
+  const j = i + d;
+  if (j < 0 || j >= ge.photos.length) return;
+  [ge.photos[i], ge.photos[j]] = [ge.photos[j], ge.photos[i]];
+  renderGePhotos();
+};
+window.geCover = function(i) {
+  const [p] = ge.photos.splice(i, 1);
+  ge.photos.unshift(p);
+  renderGePhotos();
+};
+window.geRemove = function(i) {
+  const [p] = ge.photos.splice(i, 1);
+  if (p.file) URL.revokeObjectURL(p.preview);
+  else if (p.path) ge.removed.push(p.path);
+  renderGePhotos();
+};
+window.geAddFiles = function(e) {
+  Array.from(e.target.files).filter(f=>f.type.startsWith('image/')).forEach(f => {
+    ge.photos.push({ file: f, preview: URL.createObjectURL(f) });
+  });
+  e.target.value = '';
+  renderGePhotos();
+};
+
+window.closeGalleryEdit = function() {
+  ge?.photos.forEach(p => { if (p.file) URL.revokeObjectURL(p.preview); });
+  ge = null;
+  closeModal('gallery-modal');
+};
+
+window.saveGalleryEdit = async function() {
+  if (!ge) return;
+  const title = document.getElementById('ge-title').value.trim();
+  const category = document.getElementById('ge-category').value;
+  const date = document.getElementById('ge-date').value || todayStr();
+  if (!title) { showToast('행사명을 입력해주세요', 'error'); return; }
+  if (!ge.photos.length) { showToast('사진이 한 장 이상 있어야 합니다. 전체 삭제는 "그룹 전체 삭제"를 누르세요.', 'error'); return; }
+
+  const btn = document.getElementById('ge-save-btn');
+  const status = document.getElementById('ge-status');
+  btn.disabled = true;
+
+  const newOnes = ge.photos.filter(p => p.file);
+  const uploadedPaths = [];
+  let done = 0;
+  const r = await guard(async () => {
+    for (const p of newOnes) {
+      status.textContent = `새 사진 업로드 중... ${done} / ${newOnes.length}`;
+      const u = await uploadOne(p.file, date);
+      uploadedPaths.push(u.path);
+      URL.revokeObjectURL(p.preview);
+      Object.assign(p, { url: u.url, path: u.path, file: null, preview: null });
+      done++;
+    }
+    status.textContent = '저장 중...';
+    const urls = ge.photos.map(p=>p.url);
+    await updateDoc(doc(db,'gallery',ge.id), {
+      title, category, date,
+      urls, url: urls[0],
+      storPaths: ge.photos.map(p=>p.path || ''),
+      updatedAt: serverTimestamp(),
+    });
+    return true;
+  });
+  btn.disabled = false;
+
+  if (!r) {
+    await removeStorage(uploadedPaths);   // 저장 실패 시 새로 올린 파일 정리
+    status.textContent = '저장 실패';
+    return;
   }
+  await removeStorage(ge.removed);        // 저장 성공 후에만 삭제한 사진 파일 정리
+  ge = null;
+  closeModal('gallery-modal');
+  showToast('사진 정보가 수정되었습니다');
+  await loadGallery();
+};
+
+window.deleteGalleryGroup = async function() {
+  if (!ge) return;
+  const g = allGallery.find(x=>x.id===ge.id);
+  if (!confirm(`"${g?.title || ''}" 사진 ${groupPhotos(g||{}).length}장을 모두 삭제할까요?\n되돌릴 수 없습니다.`)) return;
+  const r = await guard(async () => { await deleteDoc(doc(db,'gallery',ge.id)); return true; }, '삭제 실패');
+  if (!r) return;
+  await removeStorage([...groupPhotos(g||{}).map(p=>p.path), ...ge.removed]);
+  ge.photos.forEach(p => { if (p.file) URL.revokeObjectURL(p.preview); });
+  ge = null;
+  closeModal('gallery-modal');
   showToast('사진이 삭제되었습니다');
   await loadGallery();
 };
@@ -1582,9 +2135,7 @@ window.deleteGalleryItem = async function(id, storPath) {
 let allInquiries = [];
 
 async function loadInquiries() {
-  allInquiries = isFirebaseReady
-    ? (await getDocs(query(collection(db,'inquiries'), orderBy('createdAt','desc')))).docs.map(d=>({id:d.id,...d.data()}))
-    : [...demoData.inquiries];
+  allInquiries = (await getDocs(query(collection(db,'inquiries'), orderBy('createdAt','desc')))).docs.map(d=>({id:d.id,...d.data()}));
   renderInquiriesTable(allInquiries);
 }
 
@@ -1594,35 +2145,31 @@ function renderInquiriesTable(items) {
     tbody.innerHTML = '<tr><td colspan="6"><div class="empty-state"><div class="empty-icon">✉️</div><p>문의가 없습니다</p></div></td></tr>';
     return;
   }
-  tbody.innerHTML = items.map(i => {
-    const dateStr = i.createdAt?.toDate ? i.createdAt.toDate().toLocaleDateString('ko-KR') : (i.createdAt||'');
-    return `
+  tbody.innerHTML = items.map(i => `
     <tr>
-      <td>${dateStr}</td>
-      <td>${i.name}</td>
-      <td>${i.phone}</td>
-      <td>${i.subject}</td>
+      <td class="nowrap">${esc(fmtTs(i.createdAt))}</td>
+      <td>${esc(i.name)}</td>
+      <td class="nowrap">${esc(i.phone)}</td>
+      <td>${esc(i.subject)}</td>
       <td>${i.confirmed ? '<span style="color:var(--success);font-size:0.8rem;">✓ 확인</span>' : '<span style="color:var(--danger);font-size:0.8rem;">미확인</span>'}</td>
-      <td>
-        <button class="btn btn-secondary btn-sm" onclick="viewInquiry('${i.id}')">상세</button>
-        <button class="btn btn-danger btn-sm" style="margin-left:4px;" onclick="deleteItem('inquiries','${i.id}')">삭제</button>
+      <td class="nowrap">
+        <button class="btn btn-secondary btn-sm" onclick="viewInquiry('${esc(i.id)}')">상세</button>
+        <button class="btn btn-danger btn-sm" onclick="deleteItem('inquiries','${esc(i.id)}')">삭제</button>
       </td>
-    </tr>`;
-  }).join('');
+    </tr>`).join('');
 }
 
 window.viewInquiry = function(id) {
   const i = allInquiries.find(x=>x.id===id);
   if (!i) return;
   editingInquiryId = id;
-  const dateStr = i.createdAt?.toDate ? i.createdAt.toDate().toLocaleDateString('ko-KR') : (i.createdAt||'');
   document.getElementById('inquiry-detail-body').innerHTML = `
     <table style="width:100%;border-collapse:collapse;font-size:0.9rem;">
-      <tr><td style="width:80px;padding:10px;color:var(--gray-600);font-weight:500;">이름</td><td style="padding:10px;">${i.name}</td></tr>
-      <tr style="background:var(--gray-50);"><td style="padding:10px;color:var(--gray-600);font-weight:500;">연락처</td><td style="padding:10px;">${i.phone}</td></tr>
-      <tr><td style="padding:10px;color:var(--gray-600);font-weight:500;">제목</td><td style="padding:10px;">${i.subject}</td></tr>
-      <tr style="background:var(--gray-50);"><td style="padding:10px;color:var(--gray-600);font-weight:500;">날짜</td><td style="padding:10px;">${dateStr}</td></tr>
-      <tr><td colspan="2" style="padding:10px;"><div style="background:var(--gray-50);padding:14px;border-radius:8px;line-height:1.7;">${(i.message||'').replace(/\n/g,'<br>')}</div></td></tr>
+      <tr><td style="width:80px;padding:10px;color:var(--gray-600);font-weight:500;">이름</td><td style="padding:10px;">${esc(i.name)}</td></tr>
+      <tr style="background:var(--gray-50);"><td style="padding:10px;color:var(--gray-600);font-weight:500;">연락처</td><td style="padding:10px;">${esc(i.phone)}</td></tr>
+      <tr><td style="padding:10px;color:var(--gray-600);font-weight:500;">제목</td><td style="padding:10px;">${esc(i.subject)}</td></tr>
+      <tr style="background:var(--gray-50);"><td style="padding:10px;color:var(--gray-600);font-weight:500;">날짜</td><td style="padding:10px;">${esc(fmtTs(i.createdAt))}</td></tr>
+      <tr><td colspan="2" style="padding:10px;"><div style="background:var(--gray-50);padding:14px;border-radius:8px;line-height:1.7;white-space:pre-wrap;">${esc(i.message)}</div></td></tr>
     </table>`;
   document.getElementById('inquiry-confirm-btn').style.display = i.confirmed ? 'none' : 'inline-flex';
   openModal('inquiry-modal');
@@ -1630,55 +2177,44 @@ window.viewInquiry = function(id) {
 
 window.confirmInquiry = async function() {
   if (!editingInquiryId) return;
-  if (isFirebaseReady) {
-    await updateDoc(doc(db,'inquiries',editingInquiryId), {confirmed:true});
-  } else {
-    const i = demoData.inquiries.find(x=>x.id===editingInquiryId);
-    if (i) i.confirmed = true;
-  }
+  const r = await guard(async () => { await updateDoc(doc(db,'inquiries',editingInquiryId), {confirmed:true}); return true; });
+  if (!r) return;
   closeModal('inquiry-modal');
   showToast('확인 처리되었습니다');
   await loadInquiries();
+};
+
+// ── 사이트 설정 ───────────────────────────────────────────────────
+
+async function loadSettings() {
+  const s = await getDoc(doc(db,'settings','site'));
+  const d = s.exists() ? s.data() : {};
+  document.getElementById('set-library-days').value = d.libraryDays || '화~일';
+  document.getElementById('set-library-time').value = d.libraryTime || '13:00 ~ 18:00';
+}
+
+window.saveSettings = async function() {
+  const data = {
+    libraryDays: document.getElementById('set-library-days').value.trim(),
+    libraryTime: document.getElementById('set-library-time').value.trim(),
+  };
+  if (!data.libraryDays || !data.libraryTime) { showToast('운영 요일과 시간을 모두 입력해주세요', 'error'); return; }
+  const r = await guard(async () => {
+    await setDoc(doc(db,'settings','site'), {...data, updatedAt: serverTimestamp()}, { merge: true });
+    return true;
+  });
+  if (r) showToast('설정이 저장되었습니다. 홈페이지에 바로 반영됩니다.');
 };
 
 // ── 공통 삭제 ────────────────────────────────────────────────────
 
 window.deleteItem = async function(col, id) {
   if (!confirm('정말 삭제할까요?')) return;
-  if (isFirebaseReady) {
-    await deleteDoc(doc(db, col, id));
-  } else {
-    if (demoData[col]) demoData[col] = demoData[col].filter(x=>x.id!==id);
-  }
+  const r = await guard(async () => { await deleteDoc(doc(db, col, id)); return true; }, '삭제 실패');
+  if (!r) return;
   showToast('삭제되었습니다');
-  await loadPage(
-    col === 'notices' ? 'notices' :
-    col === 'sermons' ? 'sermons' :
-    col === 'programs' ? 'programs' :
-    col === 'gallery' ? 'gallery' : 'inquiries'
-  );
+  await loadPage(col);
 };
-
-// ── 유틸 ──────────────────────────────────────────────────────────
-
-function extractYtId(str) {
-  const m = str.match(/(?:youtu\.be\/|v=|embed\/)([A-Za-z0-9_\-]{11})/);
-  return m ? m[1] : (str.length === 11 ? str : null);
-}
-
-function todayStr() {
-  return new Date().toISOString().slice(0,10);
-}
-
-function openModal(id) { document.getElementById(id).classList.add('open'); }
-window.closeModal = function(id) { document.getElementById(id).classList.remove('open'); };
-
-function showToast(msg, type='') {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.className = 'show' + (type ? ' '+type : '');
-  setTimeout(() => t.className = '', 2800);
-}
 
 // ── 엔터 키 로그인 ────────────────────────────────────────────────
 document.getElementById('login-pw').addEventListener('keydown', e => {

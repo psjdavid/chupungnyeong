@@ -19,7 +19,7 @@
   <nav class="navbar" id="navbar">
     <div class="nav-container">
       <a href="#home" class="nav-logo" aria-label="홈으로">
-        <div class="logo-cross">✝</div>
+        <img src="icon.png" alt="추풍령교회 로고" style="width:48px;height:48px;object-fit:contain;">
         <div class="logo-text">
           <span class="logo-main">추풍령교회</span>
           <span class="logo-sub">구름바람 작은도서관</span>
@@ -29,9 +29,9 @@
         <span></span><span></span><span></span>
       </button>
       <ul class="nav-menu" id="navMenu">
-        <li><a href="#home" class="nav-link active-link">홈</a></li>
+        <li><a href="#home" class="nav-link" data-nav="home">홈</a></li>
         <li class="has-dropdown">
-          <a href="#about" class="nav-link">교회소개 <span class="arrow">▾</span></a>
+          <a href="#about" class="nav-link" data-nav="about">교회소개 <span class="arrow">▾</span></a>
           <ul class="dropdown">
             <li><a href="#about-pastor">담임목사 인사말</a></li>
             <li><a href="#about-vision">교회 비전</a></li>
@@ -39,29 +39,37 @@
           </ul>
         </li>
         <li class="has-dropdown">
-          <a href="#worship" class="nav-link">예배와 말씀 <span class="arrow">▾</span></a>
+          <a href="#worship" class="nav-link" data-nav="worship">예배와 말씀 <span class="arrow">▾</span></a>
           <ul class="dropdown">
             <li><a href="#worship-schedule">예배 안내</a></li>
             <li><a href="#sermons">설교 영상</a></li>
+            <li><a href="#videos">영상 게시판</a></li>
           </ul>
         </li>
-        <li><a href="#ministry" class="nav-link">교회사역</a></li>
+        <li><a href="#ministry" class="nav-link" data-nav="ministry">교회사역</a></li>
         <li class="has-dropdown">
-          <a href="#library" class="nav-link">구름바람 도서관 <span class="arrow">▾</span></a>
+          <a href="#library" class="nav-link" data-nav="library">구름바람 작은 도서관 <span class="arrow">▾</span></a>
           <ul class="dropdown">
             <li><a href="#library-intro">도서관 소개</a></li>
             <li><a href="#library-programs">프로그램</a></li>
-            <li><a href="#gallery">활동 갤러리</a></li>
           </ul>
         </li>
-        <li><a href="#notices" class="nav-link">공지/행사</a></li>
-        <li><a href="#contact" class="nav-link nav-cta">문의하기</a></li>
+        <li class="has-dropdown">
+          <a href="#notices" class="nav-link" data-nav="notices">공지/행사 <span class="arrow">▾</span></a>
+          <ul class="dropdown">
+            <li><a href="#notices">공지 및 행사</a></li>
+            <li><a href="#gallery">활동 사진</a></li>
+          </ul>
+        </li>
+        <li><a href="#contact" class="nav-link nav-cta" data-nav="contact">문의하기</a></li>
       </ul>
     </div>
   </nav>
 
-  <!-- ===== HERO ===== -->
-  <section class="hero" id="home">
+  <main id="main">
+
+  <!-- ===== HERO (홈) ===== -->
+  <section class="hero" id="home" data-page="home">
     <div class="hero-bg"></div>
     <div class="hero-particles" aria-hidden="true">
       <span></span><span></span><span></span><span></span><span></span>
@@ -77,17 +85,13 @@
       </p>
       <div class="hero-actions">
         <a href="#worship-schedule" class="btn btn-primary">예배 안내</a>
-        <a href="#library" class="btn btn-ghost">구름바람 도서관</a>
+        <a href="#library" class="btn btn-ghost">구름바람 작은 도서관</a>
       </div>
-    </div>
-    <div class="hero-scroll-hint" aria-hidden="true">
-      <div class="scroll-mouse"><div class="scroll-dot"></div></div>
-      <span>스크롤</span>
     </div>
   </section>
 
-  <!-- ===== QUICK INFO BAR ===== -->
-  <div class="quick-bar">
+  <!-- ===== QUICK INFO BAR (홈) ===== -->
+  <div class="quick-bar" data-page="home">
     <div class="container">
       <div class="quick-grid">
         <a href="#worship-schedule" class="quick-item">
@@ -101,36 +105,70 @@
           <span class="qi-icon">🌄</span>
           <div class="qi-text">
             <strong>새벽기도회</strong>
-            <span>월~토 오전 5:30</span>
+            <span>오전 5:00</span>
           </div>
         </a>
         <a href="#library-intro" class="quick-item">
           <span class="qi-icon">📚</span>
           <div class="qi-text">
             <strong>도서관 운영</strong>
-            <span>화~토 오전 10:00~오후 5:00</span>
+            <span><span data-setting="libraryDays">화~일</span> <span data-setting="libraryTime">13:00 ~ 18:00</span></span>
           </div>
         </a>
         <a href="#about-location" class="quick-item">
           <span class="qi-icon">📍</span>
           <div class="qi-text">
             <strong>오시는 길</strong>
-            <span>충북 영동군 추풍령면</span>
+            <span>충북 영동군 추풍령면 추풍령로 491-11</span>
           </div>
         </a>
       </div>
     </div>
   </div>
 
-  <!-- ===== NOTICES PREVIEW ===== -->
-  <section class="section" id="notices-preview">
+  <!-- ===== WORSHIP (홈 + 예배와 말씀) ===== -->
+  <section class="section bg-deep" id="worship" data-page="home worship">
+    <div class="container">
+      <div class="section-label light" style="text-align:center">예배와 말씀</div>
+      <h2 class="section-title light" style="text-align:center;margin-bottom:48px">예배 안내</h2>
+      <div class="worship-grid" id="worship-schedule">
+        <div class="worship-card">
+          <div class="worship-day-badge">주일</div>
+          <h4>주일예배</h4>
+          <div class="worship-time">오전 11:00</div>
+          <p>온 교우가 함께 드리는 주일 대예배</p>
+        </div>
+        <div class="worship-card">
+          <div class="worship-day-badge">월~토</div>
+          <h4>새벽기도회</h4>
+          <div class="worship-time">오전 5:00</div>
+          <p>말씀과 기도로 하루를 여는 새벽예배</p>
+        </div>
+        <div class="worship-card">
+          <div class="worship-day-badge">수요일</div>
+          <h4>수요예배</h4>
+          <div class="worship-time">오후 7:00</div>
+          <p>한 주의 중간, 말씀으로 힘을 얻는 시간</p>
+        </div>
+        <div class="worship-card">
+          <div class="worship-day-badge">금요일</div>
+          <h4>금요기도회</h4>
+          <div class="worship-time">오후 7:00</div>
+          <p>나라와 민족, 지역을 위한 중보기도</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== NOTICES PREVIEW (홈) ===== -->
+  <section class="section" id="notices-preview" data-page="home">
     <div class="container">
       <div class="section-header">
         <div>
           <h2 class="section-title">공지 및 행사</h2>
           <p class="section-subtitle">교회와 도서관의 최신 소식을 전합니다</p>
         </div>
-        <a href="#notices" class="link-more">전체 보기 →</a>
+        <a href="#notices" class="link-more">더 보기 →</a>
       </div>
       <div class="notices-grid" id="noticesGrid">
         <div class="skeleton-card"></div>
@@ -140,15 +178,15 @@
     </div>
   </section>
 
-  <!-- ===== SERMONS PREVIEW ===== -->
-  <section class="section bg-warm" id="sermons-preview">
+  <!-- ===== SERMONS PREVIEW (홈) ===== -->
+  <section class="section bg-warm" id="sermons-preview" data-page="home">
     <div class="container">
       <div class="section-header">
         <div>
           <h2 class="section-title">최근 설교</h2>
           <p class="section-subtitle">말씀 안에서 은혜를 나눕니다</p>
         </div>
-        <a href="#sermons" class="link-more">전체 보기 →</a>
+        <a href="#sermons" class="link-more">더 보기 →</a>
       </div>
       <div class="sermons-grid" id="sermonsGridHome">
         <div class="skeleton-card tall"></div>
@@ -158,18 +196,55 @@
     </div>
   </section>
 
+  <!-- ===== GALLERY (홈 · 교회/도서관 활동 사진) ===== -->
+  <section class="section" id="gallery" data-page="home">
+    <div class="container">
+      <div class="gallery-header">
+        <div>
+          <h2 class="section-title">활동 사진</h2>
+          <p class="section-subtitle">교회와 도서관의 행사 사진을 모았습니다</p>
+        </div>
+        <div class="gallery-filter-wrap">
+          <button class="gf-btn active" data-cat="all">전체</button>
+          <button class="gf-btn" data-cat="church">교회</button>
+          <button class="gf-btn" data-cat="worship">예배</button>
+          <button class="gf-btn" data-cat="library">도서관</button>
+          <button class="gf-btn" data-cat="program">프로그램</button>
+          <button class="gf-btn" data-cat="event">행사</button>
+        </div>
+      </div>
+      <div class="list-toolbar">
+        <input type="search" class="list-search" id="gallerySearch" placeholder="행사명 검색" aria-label="사진 검색">
+      </div>
+      <div class="gallery-grid" id="galleryGrid">
+        <div class="loading-text" style="grid-column:1/-1">사진을 불러오는 중...</div>
+      </div>
+      <div class="pager" id="galleryPager"></div>
+    </div>
+  </section>
+
+  <!-- ===== HOME SHORTCUTS (홈) ===== -->
+  <section class="section home-links-section" data-page="home">
+    <div class="container">
+      <h2 class="section-title" style="margin-bottom:24px">더 둘러보기</h2>
+      <div class="home-links">
+        <a href="#about" class="home-link"><span>⛪</span><strong>교회 소개</strong><small>인사말 · 비전 · 오시는 길</small></a>
+        <a href="#videos" class="home-link"><span>🎬</span><strong>영상 게시판</strong><small>찬양 · 행사 · 도서관 영상</small></a>
+        <a href="#library" class="home-link"><span>📚</span><strong>구름바람 작은도서관</strong><small>프로그램 · 운영 안내</small></a>
+        <a href="#notices" class="home-link"><span>📢</span><strong>공지 및 행사</strong><small>교회 · 도서관 소식 전체</small></a>
+      </div>
+    </div>
+  </section>
+
   <!-- ===== CHURCH ABOUT ===== -->
-  <section class="section" id="about">
+  <section class="section" id="about" data-page="about">
     <div class="container">
 
       <!-- Pastor Message -->
       <div class="pastor-block" id="about-pastor">
         <div class="pastor-photo-wrap">
           <div class="pastor-photo" id="pastorPhotoEl">
-            <div class="photo-placeholder">
-              <span>👤</span>
-              <p>목사님 사진</p>
-            </div>
+            <img src="church_minister.png" alt="김철홍 목사" style="width:100%;height:100%;object-fit:cover;">
           </div>
           <div class="pastor-name-tag">
             <strong>김철홍 목사</strong>
@@ -220,35 +295,28 @@
         <h2 class="section-title" style="margin-bottom:32px">찾아오시는 방법</h2>
         <div class="location-grid">
           <div class="map-wrap">
-            <!-- 실제 주소로 교체 필요: 카카오맵 또는 Google Maps iframe -->
-            <iframe
-              src="https://map.kakao.com/link/map/추풍령교회,36.218,127.962"
-              width="100%" height="500"
-              style="border:0; border-radius:12px;"
-              allowfullscreen loading="lazy"
-              title="추풍령교회 지도">
-            </iframe>
+            <div id="kakaoMap" class="kakao-map"></div>
           </div>
           <div class="location-info">
             <div class="info-row">
               <span class="info-icon">📍</span>
               <div>
                 <strong>주소</strong>
-                <p>충청북도 영동군 추풍령면<br><!-- 상세 주소 입력 필요 --></p>
+                <p>충청북도 영동군 추풍령면 추풍령로 491-11</p>
               </div>
             </div>
             <div class="info-row">
               <span class="info-icon">📞</span>
               <div>
                 <strong>전화</strong>
-                <p><!-- 전화번호 입력 필요 --></p>
+                <p><a href="tel:01053152395">010-5315-2395</a></p>
               </div>
             </div>
             <div class="info-row">
               <span class="info-icon">✉️</span>
               <div>
                 <strong>이메일</strong>
-                <p><!-- 이메일 입력 필요 --></p>
+                <p>crying1@naver.com</p>
               </div>
             </div>
             <div class="info-row">
@@ -272,53 +340,45 @@
     </div>
   </section>
 
-  <!-- ===== WORSHIP ===== -->
-  <section class="section bg-deep" id="worship">
-    <div class="container">
-      <div class="section-label light" style="text-align:center">예배와 말씀</div>
-      <h2 class="section-title light" style="text-align:center;margin-bottom:48px">예배 안내</h2>
-      <div class="worship-grid" id="worship-schedule">
-        <div class="worship-card">
-          <div class="worship-day-badge">주일</div>
-          <h4>주일예배</h4>
-          <div class="worship-time">오전 11:00</div>
-          <p>온 교우가 함께 드리는 주일 대예배</p>
-        </div>
-        <div class="worship-card">
-          <div class="worship-day-badge">월~토</div>
-          <h4>새벽기도회</h4>
-          <div class="worship-time">오전 5:30</div>
-          <p>말씀과 기도로 하루를 여는 새벽예배</p>
-        </div>
-        <div class="worship-card">
-          <div class="worship-day-badge">수요일</div>
-          <h4>수요예배</h4>
-          <div class="worship-time">오후 7:30</div>
-          <p>한 주의 중간, 말씀으로 힘을 얻는 시간</p>
-        </div>
-        <div class="worship-card">
-          <div class="worship-day-badge">금요일</div>
-          <h4>금요기도회</h4>
-          <div class="worship-time">오후 7:30</div>
-          <p>나라와 민족, 지역을 위한 중보기도</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- ===== SERMONS FULL ===== -->
-  <section class="section" id="sermons">
+  <section class="section" id="sermons" data-page="worship">
     <div class="container">
       <div class="section-label">설교 영상</div>
-      <h2 class="section-title" style="margin-bottom:32px">말씀 아카이브</h2>
+      <h2 class="section-title" style="margin-bottom:24px">말씀 아카이브</h2>
+      <div class="list-toolbar">
+        <input type="search" class="list-search" id="sermonSearch" placeholder="설교 제목·본문 검색" aria-label="설교 검색">
+      </div>
       <div class="sermons-list-wrap" id="sermonsListFull">
         <div class="loading-text">설교 목록을 불러오는 중...</div>
       </div>
+      <div class="pager" id="sermonsPager"></div>
+    </div>
+  </section>
+
+  <!-- ===== VIDEOS (일반 영상 게시판) ===== -->
+  <section class="section bg-warm" id="videos" data-page="worship">
+    <div class="container">
+      <div class="section-label">영상 게시판</div>
+      <h2 class="section-title" style="margin-bottom:24px">찬양 · 행사 · 도서관 영상</h2>
+      <div class="list-toolbar">
+        <div class="notice-filter-row" id="videoFilters">
+          <button class="nf-btn active" data-filter="all">전체</button>
+          <button class="nf-btn" data-filter="praise">🎵 찬양</button>
+          <button class="nf-btn" data-filter="event">📅 행사</button>
+          <button class="nf-btn" data-filter="library">📚 도서관</button>
+          <button class="nf-btn" data-filter="etc">기타</button>
+        </div>
+        <input type="search" class="list-search" id="videoSearch" placeholder="영상 제목 검색" aria-label="영상 검색">
+      </div>
+      <div class="videos-grid" id="videosGrid">
+        <div class="loading-text">영상을 불러오는 중...</div>
+      </div>
+      <div class="pager" id="videosPager"></div>
     </div>
   </section>
 
   <!-- ===== MINISTRY ===== -->
-  <section class="section bg-warm" id="ministry">
+  <section class="section bg-warm" id="ministry" data-page="ministry">
     <div class="container">
       <div class="section-label">교회사역</div>
       <h2 class="section-title" style="margin-bottom:12px">섬기는 사역들</h2>
@@ -364,8 +424,8 @@
           <span class="mc-icon">🏘️</span>
           <h4>지역사회 섬김</h4>
           <ul>
-            <li>문화공간 시온의 아침</li>
-            <li>추풍령면과의 상생 비전</li>
+            <li>도서관을 통한 배움 및 문화 사역</li>
+            <li>추풍령면 마을 만들기 추진</li>
             <li>농촌교회 기반 마을 섬김</li>
           </ul>
         </div>
@@ -383,7 +443,7 @@
   </section>
 
   <!-- ===== LIBRARY ===== -->
-  <section class="section bg-library" id="library">
+  <section class="section bg-library" id="library" data-page="library">
     <div class="container">
 
       <!-- Library Intro -->
@@ -395,8 +455,8 @@
           독서·문화예술·교육·체육·돌봄이 어우러지는 생활 밀착형 공동체 플랫폼입니다.
         </p>
         <div class="library-meta-row">
-          <div class="lm-item">📅 운영: <strong>화요일 ~ 토요일</strong></div>
-          <div class="lm-item">🕙 시간: <strong>오전 10:00 ~ 오후 5:00</strong></div>
+          <div class="lm-item">📅 운영: <strong data-setting="libraryDays">화~일</strong></div>
+          <div class="lm-item">🕙 시간: <strong data-setting="libraryTime">13:00 ~ 18:00</strong></div>
           <div class="lm-item">📍 위치: <strong>추풍령교회 내</strong></div>
         </div>
       </div>
@@ -409,49 +469,33 @@
         </div>
       </div>
 
-      <!-- Gallery -->
-      <div id="gallery">
-        <div class="gallery-header">
-          <h3 class="sub-section-title">활동 사진</h3>
-          <div class="gallery-filter-wrap">
-            <button class="gf-btn active" data-cat="all">전체</button>
-            <button class="gf-btn" data-cat="library">도서관</button>
-            <button class="gf-btn" data-cat="church">교회</button>
-            <button class="gf-btn" data-cat="event">행사</button>
-          </div>
-        </div>
-        <div class="gallery-grid" id="galleryGrid">
-          <div class="loading-text" style="grid-column:1/-1;text-align:center;padding:60px;color:var(--text-light)">
-            사진을 불러오는 중...
-          </div>
-        </div>
-        <div style="text-align:center;margin-top:32px">
-          <button class="btn btn-outline" id="loadMoreGallery">사진 더 보기</button>
-        </div>
-      </div>
 
     </div>
   </section>
 
   <!-- ===== NOTICES FULL ===== -->
-  <section class="section" id="notices">
+  <section class="section" id="notices" data-page="notices">
     <div class="container">
       <div class="section-label">공지 및 행사</div>
       <h2 class="section-title" style="margin-bottom:32px">소식 전체 보기</h2>
-      <div class="notice-filter-row">
-        <button class="nf-btn active" data-filter="all">전체</button>
-        <button class="nf-btn" data-filter="church">⛪ 교회</button>
-        <button class="nf-btn" data-filter="library">📚 도서관</button>
-        <button class="nf-btn" data-filter="event">📅 행사</button>
+      <div class="list-toolbar">
+        <div class="notice-filter-row">
+          <button class="nf-btn active" data-filter="all">전체</button>
+          <button class="nf-btn" data-filter="church">⛪ 교회</button>
+          <button class="nf-btn" data-filter="library">📚 도서관</button>
+          <button class="nf-btn" data-filter="event">📅 행사</button>
+        </div>
+        <input type="search" class="list-search" id="noticeSearch" placeholder="공지 제목 검색" aria-label="공지 검색">
       </div>
       <div class="notices-full-list" id="noticesFullList">
         <div class="loading-text">공지사항을 불러오는 중...</div>
       </div>
+      <div class="pager" id="noticesPager"></div>
     </div>
   </section>
 
   <!-- ===== CONTACT ===== -->
-  <section class="section bg-warm" id="contact">
+  <section class="section bg-warm" id="contact" data-page="contact">
     <div class="container">
       <div class="section-label">문의하기</div>
       <h2 class="section-title" style="margin-bottom:48px">언제든지 연락 주세요</h2>
@@ -460,20 +504,20 @@
           <div class="form-row">
             <div class="form-group">
               <label for="cName">이름 <span class="required">*</span></label>
-              <input type="text" id="cName" name="name" placeholder="이름을 입력해주세요" required>
+              <input type="text" id="cName" name="name" placeholder="이름을 입력해주세요" maxlength="50" required>
             </div>
             <div class="form-group">
               <label for="cPhone">연락처</label>
-              <input type="tel" id="cPhone" name="phone" placeholder="010-0000-0000">
+              <input type="tel" id="cPhone" name="phone" placeholder="010-0000-0000" maxlength="30">
             </div>
           </div>
           <div class="form-group">
             <label for="cSubject">제목 <span class="required">*</span></label>
-            <input type="text" id="cSubject" name="subject" placeholder="문의 제목을 입력해주세요" required>
+            <input type="text" id="cSubject" name="subject" placeholder="문의 제목을 입력해주세요" maxlength="200" required>
           </div>
           <div class="form-group">
             <label for="cMessage">내용 <span class="required">*</span></label>
-            <textarea id="cMessage" name="message" rows="6" placeholder="문의 내용을 자유롭게 입력해주세요" required></textarea>
+            <textarea id="cMessage" name="message" rows="6" placeholder="문의 내용을 자유롭게 입력해주세요" maxlength="5000" required></textarea>
           </div>
           <button type="submit" class="btn btn-primary btn-full" id="submitBtn">
             문의 보내기 ✉️
@@ -488,39 +532,40 @@
               <span>📞</span>
               <div>
                 <strong>전화</strong>
-                <p id="infoPhone"><!-- 전화번호 입력 필요 --></p>
+                <p id="infoPhone"><a href="tel:01053152395">010-5315-2395</a></p>
               </div>
             </div>
             <div class="ci-item">
               <span>✉️</span>
               <div>
                 <strong>이메일</strong>
-                <p id="infoEmail"><!-- 이메일 입력 필요 --></p>
+                <p id="infoEmail">crying1@naver.com</p>
               </div>
             </div>
             <div class="ci-item">
               <span>📍</span>
               <div>
                 <strong>주소</strong>
-                <p>충청북도 영동군 추풍령면</p>
+                <p>충청북도 영동군 추풍령면 추풍령로 491-11</p>
               </div>
             </div>
             <div class="ci-item">
               <span>⏰</span>
               <div>
                 <strong>도서관 운영시간</strong>
-                <p>화~토 10:00 ~ 17:00</p>
+                <p><span data-setting="libraryDays">화~일</span> <span data-setting="libraryTime">13:00 ~ 18:00</span></p>
               </div>
             </div>
           </div>
-          <a href="https://pf.kakao.com/" target="_blank" class="kakao-btn">
+          <a href="https://open.kakao.com/o/gcSjekqi" target="_blank" rel="noopener" class="kakao-btn">
             <span>💬</span> 카카오 채널로 문의
           </a>
-          <p class="kakao-note">카카오 채널 링크는 관리자 페이지에서 설정할 수 있습니다</p>
         </div>
       </div>
     </div>
   </section>
+
+  </main>
 
   <!-- ===== FOOTER ===== -->
   <footer class="footer">
@@ -528,11 +573,11 @@
       <div class="footer-top">
         <div class="footer-brand">
           <div class="footer-logo">
-            <span class="logo-cross-footer">✝</span>
+            <img src="icon.png" alt="추풍령교회 로고" style="width:28px;height:28px;object-fit:contain;">
             <span>추풍령교회</span>
           </div>
           <p>예장고신 소속 · 담임목사 김철홍</p>
-          <p>충청북도 영동군 추풍령면</p>
+          <p>충청북도 영동군 추풍령면 추풍령로 491-11</p>
           <p class="footer-tagline">"동서를 잇는 복음의 관문"</p>
         </div>
         <div class="footer-nav">
@@ -541,15 +586,16 @@
             <li><a href="#about">교회소개</a></li>
             <li><a href="#worship-schedule">예배 안내</a></li>
             <li><a href="#sermons">설교 영상</a></li>
+            <li><a href="#videos">영상 게시판</a></li>
             <li><a href="#ministry">교회사역</a></li>
           </ul>
         </div>
         <div class="footer-nav">
-          <h4>구름바람 도서관</h4>
+          <h4>구름바람 작은 도서관</h4>
           <ul>
             <li><a href="#library-intro">도서관 소개</a></li>
             <li><a href="#library-programs">프로그램 안내</a></li>
-            <li><a href="#gallery">활동 갤러리</a></li>
+            <li><a href="#gallery">활동 사진</a></li>
             <li><a href="#notices">공지/행사</a></li>
           </ul>
         </div>
@@ -557,26 +603,29 @@
           <h4>예배 안내</h4>
           <div class="footer-worship-info">
             <p><strong>주일예배</strong> 오전 11:00</p>
-            <p><strong>새벽기도</strong> 오전 5:30</p>
-            <p><strong>수요예배</strong> 오후 7:30</p>
-            <p><strong>금요기도</strong> 오후 7:30</p>
+            <p><strong>새벽기도</strong> 오전 5:00</p>
+            <p><strong>수요예배</strong> 오후 7:00</p>
+            <p><strong>금요기도</strong> 오후 7:00</p>
           </div>
         </div>
       </div>
       <div class="footer-bottom">
-        <p>© 2025 추풍령교회 · 구름바람 작은도서관. All rights reserved.</p>
+        <p>© 2026 추풍령교회 · 구름바람 작은도서관. All rights reserved.</p>
         <a href="/admin/" class="admin-link">관리자 로그인</a>
       </div>
     </div>
   </footer>
 
-  <!-- ===== IMAGE MODAL ===== -->
-  <div class="img-modal" id="imgModal" role="dialog" aria-modal="true" aria-label="이미지 크게 보기">
+  <!-- ===== GALLERY CAROUSEL MODAL ===== -->
+  <div class="img-modal" id="imgModal" role="dialog" aria-modal="true" aria-label="사진 보기">
     <div class="img-modal-backdrop" id="imgModalBg"></div>
     <div class="img-modal-inner">
       <button class="img-modal-close" id="imgModalClose" aria-label="닫기">✕</button>
-      <img id="imgModalSrc" src="" alt="" loading="lazy">
+      <button class="carousel-btn prev" id="carouselPrev" aria-label="이전">&#8249;</button>
+      <img id="imgModalSrc" src="" alt="">
+      <button class="carousel-btn next" id="carouselNext" aria-label="다음">&#8250;</button>
       <p id="imgModalCaption"></p>
+      <div id="carouselCounter" class="carousel-counter"></div>
     </div>
   </div>
 
@@ -584,12 +633,70 @@
   <div class="notice-modal" id="noticeModal" role="dialog" aria-modal="true">
     <div class="notice-modal-bg" id="noticeModalBg"></div>
     <div class="notice-modal-box">
-      <button class="notice-modal-close" id="noticeModalClose">✕</button>
+      <button class="notice-modal-close" id="noticeModalClose" aria-label="닫기">✕</button>
       <div id="noticeModalContent"></div>
     </div>
   </div>
 
   <!-- Firebase SDK (모듈 방식) -->
   <script type="module" src="js/app.js"></script>
+
+  <!-- 카카오맵 -->
+  <script>
+    function initKakaoMap() {
+      kakao.maps.load(function() {
+        var container = document.getElementById('kakaoMap');
+        var options = {
+          center: new kakao.maps.LatLng(36.2178, 127.9609),
+          level: 4
+        };
+        var map = new kakao.maps.Map(container, options);
+        window.__kakaoMap = map;
+
+        // 지도 컨트롤 추가
+        var zoomControl = new kakao.maps.ZoomControl();
+        map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+
+        var mapTypeControl = new kakao.maps.MapTypeControl();
+        map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
+
+        var geocoder = new kakao.maps.services.Geocoder();
+        geocoder.addressSearch('충청북도 영동군 추풍령면 추풍령로 491-11', function(result, status) {
+          if (status === kakao.maps.services.Status.OK) {
+            var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+            window.__kakaoCenter = coords;
+            var marker = new kakao.maps.Marker({ map: map, position: coords });
+            var infowindow = new kakao.maps.InfoWindow({
+              content: [
+                '<div style="padding:10px 14px;min-width:180px;">',
+                '  <div style="font-size:13px;font-weight:700;color:#1E4D35;margin-bottom:4px;">⛪ 추풍령교회</div>',
+                '  <div style="font-size:11px;color:#666;margin-bottom:8px;">충북 영동군 추풍령면 추풍령로 491-11</div>',
+                '  <a href="https://map.kakao.com/link/to/추풍령교회,' + result[0].y + ',' + result[0].x + '" target="_blank"',
+                '     style="display:inline-block;padding:4px 10px;background:#1E4D35;color:white;border-radius:4px;font-size:11px;font-weight:600;text-decoration:none;">',
+                '    🚗 길찾기',
+                '  </a>',
+                '  <a href="https://map.kakao.com/link/map/추풍령교회,' + result[0].y + ',' + result[0].x + '" target="_blank"',
+                '     style="display:inline-block;padding:4px 10px;background:#f5f5f5;color:#333;border-radius:4px;font-size:11px;font-weight:600;text-decoration:none;margin-left:4px;">',
+                '    📍 카카오맵에서 보기',
+                '  </a>',
+                '</div>'
+              ].join('')
+            });
+            infowindow.open(map, marker);
+            map.setCenter(coords);
+          }
+        });
+      });
+    }
+    // 숨겨진 페이지에서 지도가 만들어진 경우, 보일 때 크기를 다시 계산
+    window.relayoutKakaoMap = function() {
+      if (!window.__kakaoMap) return;
+      window.__kakaoMap.relayout();
+      if (window.__kakaoCenter) window.__kakaoMap.setCenter(window.__kakaoCenter);
+    };
+  </script>
+  <script type="text/javascript"
+    src="//dapi.kakao.com/v2/maps/sdk.js?appkey=290f1e21ce85175e794d06d11d18790c&libraries=services&autoload=false"
+    onload="initKakaoMap()"></script>
 </body>
 </html>
